@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail 0</title>
+</head>
+<body>
+    {% extends 'myapp/base.html' %}
+    {% block myhdg %}
+        <h1>Hello Tab!</h1>
+    {% endblock %}
+
+    {% block body_block %}
+        <h1>The detailed information about course: {{ courseNumber }}</h1>
+        <p>Course title: {{ cTitle }}</p>
+        <p>Course textbook: {{ cTextbook }}</p>
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+body
+{
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.5em;
+    background-color: #011627;
+    color: white;
+    text-align: center;
+    border: 40px solid #2EC486;
+    border-top: 0;
+    margin: 0;
+}
+
+h1
+{
+    text-align: center;
+    color: white;
+    font-family: "Bodoni MT Poster Compressed";
+}
+
+.hbar1
+{
+    display: inline;
+    margin: 15px;
+}
+
+a{color:azure;}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'myapp/styling.css' %}" />
+        <title>Course Listing APP - {% block title %}Welcome!{% endblock %}</title>
+    </head>
+
+    <body>
+        <div>
+            <h1>{% block myhdg %}Hello User {% endblock %}</h1>
+            {% block body_block %}*** {% endblock %}
+        </div>
+        <hr />
+        <div>
+            <ul>
+                <li class="hbar1"><a href="/myapp/about/">Find out about this site</a></li>
+                <li class="hbar1"><a href = "{% url 'myapp:index' %}">Click here to return to main page</a><br/></li>
+            </ul>
+        </div>
+    </body>
+</html>

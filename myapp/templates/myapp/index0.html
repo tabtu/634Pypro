@@ -1,0 +1,33 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends 'myapp/base.html' %}
+
+    {% block myhdg %}
+        <h1>Hello Tab!</h1>
+    {% endblock %}
+    {% block body_block %}
+    {%  if courselist %}
+        <h2>List of courses</h2>
+        <ul>
+            {%  for course in courselist %}
+                <li>
+                    <a href="http://127.0.0.1:8000/myapp/{{ course.course_no }}">
+                    {{ course.title }}
+                    </a>
+                </li>
+            {%  endfor %}
+        </ul>
+    {% else%}
+        <strong> There are no available courses!</strong>
+    {%  endif %}
+
+    {% endblock %}
+</body>
+</html>
