@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django import forms
 
 # the field of Author
 class Author(models.Model):
@@ -14,7 +15,6 @@ class Author(models.Model):
     birthdate = models.DateField()
     # age = models.IntegerField()
     city = models.CharField(max_length=20, choices=CITY_CHOICE, default='---')
-
     def __str__(self):
         return self.firstname + ' ' + self.lastname
 
@@ -25,7 +25,6 @@ class Book(models.Model):
     author = models.ForeignKey(Author)
     in_stock = models.BooleanField(default=True)
     numpages = models.IntegerField(default=0)
-
     def __str__(self):
         return self.title
 
@@ -35,7 +34,6 @@ class Course(models.Model):
     course_no = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=100)
     textbook = models.ForeignKey(Book)
-
     def __str__(self):
         #return self.title
         return self.title
@@ -62,10 +60,6 @@ class Student(User):
 class Topic(models.Model):
     subject = models.CharField(max_length=100, unique=True)
     intro_course = models.BooleanField(default=True)
-    NO_PREFERENCE = 0
-    MORNING = 1
-    AFTERNOON = 2
-    EVENING = 3
     TIME_CHOICES = (
         (0, 'No preference'),
         (1, 'Morning'),
@@ -77,3 +71,10 @@ class Topic(models.Model):
     avg_age =models.IntegerField(default=20)
     def __str__(self):
         return self.subject
+
+class TopicForm(forms.ModelForm):
+    class Meta:
+        model = Topic
+        fields=['subject', 'intro_course', 'time', 'avg_age']
+        widgets={'time': forms.RadioSelect()}
+        labels={'time':'Preferred Time', 'avg_age':'What is your age','intro_course':'This should be an introductory level course'}

@@ -15,8 +15,10 @@
         <hr />
         <div>
             <ul>
-                <li class="hbar1"><a href="/myapp/about/">Find out about this site</a></li>
-                <li class="hbar1"><a href = "{% url 'myapp:index' %}">Click here to return to main page</a><br/></li>
+                <li class="hbar1"><a href="/myapp/about/">About Page</a></li>
+                <li class="hbar1"><a href = "{% url 'myapp:index' %}">Main page</a><br/></li>
+                <li class="hbar1"><a href = "{% url 'myapp:course' %}">Courses</a><br/></li>
+                <li class="hbar1"><a href = "{% url 'myapp:addtopic' %}">Add a topic</a><br/></li>
             </ul>
         </div>
     </body>

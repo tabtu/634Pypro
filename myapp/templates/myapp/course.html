@@ -1,0 +1,16 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}Courses Page{% endblock %}
+
+{% block body_block %}
+   {% if courselist %}
+       <h2>List of courses:</h2>
+            <ol>
+           {% for course in courselist %}
+               <li><a href="/myapp/topic/{{ topic.subject }}" >{{ topic.subject }} </a></li>
+           {%  endfor %}
+            </ol>
+   {% else%}
+       <strong> There are no available courses!</strong>
+   {%  endif %}
+{% endblock %}

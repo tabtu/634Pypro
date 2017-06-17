@@ -1,6 +1,25 @@
-<p><ul class="errorlist"><li>This field is required.</li></ul></p>
-<p>Subject: <input type="text" name="subject" maxlength="100" /></p>
-<p>Message: <input type="text" name="message" value="Hi there" /></p>
- <p><ul class="errorlist"><li>Enter a valid email address.</li></ul></p>
-<p>Sender: <input type="email" name="sender" value="invalid email address" /></p>
-<p>Cc myself: <input checked="checked" type="checkbox" name="cc_myself" /></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Topics</title>
+</head>
+<body>
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+        {% if topiclist %}
+        <h2>List of Topics</h2>
+        <ol>
+            {% for topics  in topiclist %}
+                <li><a href="/myapp/topic/{{ topic.subject }}" >{{ topics.subject }} </a></li>
+            {% endfor %}
+        </ol>
+
+    {% else %}
+        <strong>There are no available topics!</strong>
+    {% endif %}
+
+{% endblock %}
+</body>
+</html>

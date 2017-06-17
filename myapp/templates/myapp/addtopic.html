@@ -1,0 +1,29 @@
+ {% extends 'myapp/base.html' %}
+
+{% block title %}Add Topic Page{% endblock %}
+
+{% block body_block %}
+    {%  if topiclist %}
+        <h2>List of topics:</h2>
+             <ol>
+            {%  for topic in topiclist %}
+                <li><a href="/myapp/topic/{{ topic.subject }}" >{{ topic.subject }} </a></li>
+            {%  endfor %}
+             </ol>
+    {% else%}
+        <strong> There are no available topics!</strong>
+    {%  endif %}
+
+
+    <h2>Add a topic:</h2>
+    <form class="addfield" action={% url 'myapp:topic'%} method="post">
+
+        {% csrf_token %}
+    <ol>
+        {% for f in form %}
+            <li> {{ f.label }}:  {{ f }}</li>
+        {% endfor %}
+    </ol>
+    <input type="submit" value="Save" />
+</form>
+{% endblock %}

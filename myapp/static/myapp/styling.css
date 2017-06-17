@@ -23,4 +23,10 @@ h1
     margin: 15px;
 }
 
+.addfield
+{
+    display: list-item;
+    margin: 10px;
+}
+
 a{color:azure;}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Topic Details</title>
+</head>
+<body>
+{% extends 'myapp/base.html' %}
+{% block body_block %}
+    {% if tid %}
+        <h2>Topic</h2>
+        <ol>
+                <p> Subject:{{ tid.subject }}</p>
+                <p> The number of people interested in:{{ tid.num_responses}} </p>
+                <p> Introductory : {{ tid.intro_course }}</p>
+                <p> Average age: {{ tid.avg_age }}</p>
+        </ol>
+        <form action="/myapp/submit-form" method="POST">
+            {% csrf_token %}
+            {{ form1 }}
+            <input type="submit" value="Submit" />
+        </form>
+
+    {% else %}
+        <strong>There are no available courses!</strong>
+    {% endif %}
+{#<p><a href="/myapp">Back</a></p>#}
+
+{% endblock %}
+
+</body>
+</html>

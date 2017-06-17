@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from myapp.models import Author, Book, Course, Student, Topic
+from myapp.forms import InterestForm, TopicForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -9,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     courselist = Course.objects.all().order_by('title')[:10]
     topiclist = Topic.objects.all().order_by('subject')[:5]
-    return render(request, 'myapp/index0.html', {'courselist': courselist, 'topiclist': topiclist})
+    return render(request, 'myapp/index.html', {'courselist': courselist, 'topiclist': topiclist})
 
 
 # about page
@@ -17,45 +18,52 @@ def about(request):
     return render(request, 'myapp/about0.html')
 
 # course page
-def course(request):
-    courselist = Course.objects.all() [:10]
-    response = HttpResponse()
-    heading1 = '<p>' + 'List of courses: ' + '</p>'
-    response.write(heading1)
-    for course in courselist:
-        para = '<p>' + str(course) + '</p>'
-        response.write(para)
-    return response
-
+def courselist(request):
+    courselist = Course.objects.all()[:10]
+    return render(request, 'myapp/course.html', {'courselist': courselist})
 
 # detail page
-def detail(request, course_no):
+def coursedetail(request, course_no):
     #c = Course.objects.get(course_no = course_no)
     c = get_object_or_404(Course, course_no = course_no)
     courseNumber = c.course_no
     cTitle = c.title
     cTextbook = str(c.textbook)
-    return render(request, 'myapp/detail0.html', {'courseNumber': courseNumber, 'cTitle': cTitle, 'cTextbook': cTextbook})
+    return render(request, 'myapp/coursedetail.html', {'courseNumber': courseNumber, 'cTitle': cTitle, 'cTextbook': cTextbook})
 
 
 # Import necessary classes and models
 # Create your views here.
-def topics(request):
+def topiclist(request):
     topiclist = Topic.objects.all()[:10]
     return render(request, 'myapp/topic.html', {'topiclist': topiclist})
 
+def topicdetail(request, subject):
+    tid = Topic.objects.get(subject = subject)
+    form1 = InterestForm()
+    if request.method == 'POST':
+        form1 = InterestForm(request.POST)
+        if form1.is_valid():
+            interest = form1.save(commit=False)
+            interest.num_responses = 1
+            interest.save()
+            return HttpResponseRedirect(reverse('myapp:topicdetail'))
+        else:
+            form1 = InterestForm()
+    if request.method == 'GET':
+        form1 = InterestForm(request.GET)
+    return render(request, 'myapp/topicdetail0.html',{'tform':form1,'tid': tid})
 
-# Import necessary classes and models
-# Create your views here.
+
 def addtopic(request):
     topiclist = Topic.objects.all()
     if request.method=='POST':
         form = TopicForm(request.POST)
         if form.is_valid():
-            topic = form.save(commit=False)
+            topic = form.save(commit=True)
             topic.num_responses=1
             topic.save()
-            return HttpResponseRedirect(reverse('myapp:topics'))
+            return HttpResponseRedirect(reverse('myapp:topic'))
     else:
         form=TopicForm()
     return render(request, 'myapp/addtopic.html', {'form': form, 'topiclist': topiclist})

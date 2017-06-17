@@ -5,10 +5,10 @@ class TopicForm(forms.ModelForm):
     class Meta:
         model = Topic
         fields = ['subject', 'intro_course', 'time', 'avg_age']
-    form = TOpicForm()
-    subject = forms.CharField(max_length=100)
-    intro_course = forms.CharField(widget=forms.Textarea)
-    time = forms.DateField
-    avg_age = forms.IntegerField(default=0)
+        widgets = {'time': forms.RadioSelect()}
+        labels = {'time':'Preferred Time', 'avg_age':'What is your age','intro_course':'This should be an introductory level course'}
 
 class InterestForm(forms.Form):
+    interested = forms.TypedChoiceField(widget=forms.RadioSelect, coerce=int, choices=((1,'Yes'),(0,'No')))
+    age = forms.IntegerField(initial=20)
+    comments = forms.CharField(widget=forms.Textarea, label='Additional Comments',required=False)
