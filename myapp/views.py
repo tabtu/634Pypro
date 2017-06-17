@@ -1,16 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from myapp.models import Author, Book, Course, Student
+from myapp.models import Author, Book, Course, Student, Topic
 from django.shortcuts import get_object_or_404
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
-
-# Create your views here.
-
-
-# index page
+# Index page
 def index(request):
     courselist = Course.objects.all().order_by('title')[:10]
-    return render(request, 'myapp/index0.html', {'courselist': courselist})
+    topiclist = Topic.objects.all().order_by('subject')[:5]
+    return render(request, 'myapp/index0.html', {'courselist': courselist, 'topiclist': topiclist})
 
 
 # about page
@@ -60,3 +59,30 @@ def addtopic(request):
     else:
         form=TopicForm()
     return render(request, 'myapp/addtopic.html', {'form': form, 'topiclist': topiclist})
+
+
+# allows a user to register as a Student
+def register(request):
+    return render(request, 'myapp/register.html')
+
+# login
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect(reverse('myapp:index')) #
+            else:
+                return HttpResponse('Your account is disabled.')
+        else:
+            return HttpResponse('Invalid login details.')
+    else:
+        return render(request, 'myapp/login.html')
+
+# logout
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse(('myapp:index')))

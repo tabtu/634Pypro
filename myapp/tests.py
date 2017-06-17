@@ -1,6 +1,9 @@
 import django
-from myapp.models import Author, Book, Course, Student
+from myapp.models import Author, Book, Course, Student, Topic
 import datetime
+
+topiclist = Topic.objects.all().order_by('subject')[:5]
+print(topiclist)
 
 l5a = Book.objects.all()
 l5b = Author.objects.all()
