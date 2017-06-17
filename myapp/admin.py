@@ -6,9 +6,3 @@ admin.site.register(Book)
 admin.site.register(Course)
 admin.site.register(Student)
 admin.site.register(Topic)
-
-class BookAdmin(admin.ModelAdmin)
-    title
-    author
-    number of pages
-    in_stock status
