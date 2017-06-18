@@ -1,8 +1,9 @@
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
-from django.http import HttpResponse
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse, HttpResponseRedirect
 from myapp.models import Author, Book, Course, Student, Topic
-from myapp.forms import InterestForm, TopicForm, LoginForm
+from myapp.forms import InterestForm, TopicForm, LoginForm, StudentForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -10,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 # Index page
 def index(request):
     courselist = Course.objects.all().order_by('title')[:10]
-    topiclist = Topic.objects.all().order_by('subject')[:5]
+    topiclist = Topic.objects.all().order_by('subject')[:10]
     return render(request, 'myapp/index.html', {'courselist': courselist, 'topiclist': topiclist})
 
 
@@ -41,7 +42,6 @@ def topiclist(request):
 
 def topicdetail(request, subject):
     tid = Topic.objects.get(subject = subject)
-    form1 = InterestForm()
     if request.method == 'POST':
         form1 = InterestForm(request.POST)
         if form1.is_valid():
@@ -53,7 +53,7 @@ def topicdetail(request, subject):
             form1 = InterestForm()
     if request.method == 'GET':
         form1 = InterestForm(request.GET)
-    return render(request, 'myapp/topicdetail0.html',{'tform':form1,'tid': tid})
+    return render(request, 'myapp/topicdetail.html',{'tform':form1,'tid': tid})
 
 
 def addtopic(request):
@@ -66,7 +66,7 @@ def addtopic(request):
             topic.save()
             return HttpResponseRedirect(reverse('myapp:topic'))
     else:
-        form=TopicForm()
+        form = TopicForm()
     return render(request, 'myapp/addtopic.html', {'form': form, 'topiclist': topiclist})
 
 
@@ -100,52 +100,31 @@ def register(request):
         uf = StudentForm()
     return render_to_response('myapp/register.html',{'uf':uf})
 
+
 def user_login(request):
-    if request.method == 'GET':
-        form = LoginForm()
-        return render_to_response('myapp/login.html', {'form': form,})
-    else:
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = request.POST('username')
-            password = request.POST('password')
-            user = auth.authenticate(username=username, password=password)
-            if user is not None and user.is_active:
-                auth.login(request, user)
-                return render_to_response('myapp/index.html')
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect(reverse('myapp:index')) #
             else:
-                return render_to_response('myapp/login.html', {'form': form,'password_is_wrong':True}, context_instance=RequestContext(request))
+                return HttpResponse('Your account is disabled.')
         else:
-            return render_to_response('myapp/login.html', {'form': form,}, context_instance=RequestContext(request))
+            return HttpResponse('Invalid login details.')
+    else:
+        return render(request, 'myapp/login.html')
+
+
+# logout
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse(('myeapp:index')))
 
 
 def regsuc(req):
     username = req.session.get('username')
     return render_to_response('myapp/regsuc.html', {'username': username})
-
-# logout
-def user_logout(request):
-    logout(request)
-    return HttpResponseRedirect(reverse(('myapp:index')))
-
-def findstudent(request, usnm):
-    usr = Student.objects.get(username = usnm)
-    return HttpResponse(usr.address)
-
-def login(request):
-    if request.method == 'GET':
-        form = LoginForm()
-        return render_to_response('myapp/login.html')
-    else:
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = request.POST.get('username', '')
-            password = request.POST.get('password', '')
-            user = auth.authenticate(username=username, password=password)
-            if user is not None and user.is_active:
-                auth.login(request, user)
-                return render_to_response('myapp/index.html', RequestContext(request))
-            else:
-                return render_to_response('myapp/login.html', RequestContext(request, {'form': form,'password_is_wrong':True}))
-        else:
-            return render_to_response('myapp/login.html', RequestContext(request, {'form': form,}))

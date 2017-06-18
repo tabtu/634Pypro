@@ -55,3 +55,7 @@ class LoginForm(forms.Form):
             raise forms.ValidationError(u"Username and Password are required fields. ")
         else:
             cleaned_data = super(LoginForm, self).clean()
+
+class UserForm(forms.Form):
+    username = forms.CharField(label='Username',max_length=100)
+    password = forms.CharField(label='Password',widget=forms.PasswordInput())

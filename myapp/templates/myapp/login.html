@@ -6,7 +6,9 @@
     <h2>Login</h2>
     <form action="." method = 'post' enctype="multipart/form-data">
       {% csrf_token %}
-      {{ form }}
-      <input type="submit" value = "ok" />
+
+      Username: <input type="text" name="username"/>
+      Password: <input type="password" name="password"/>
+      <input type="submit" value = "LOGIN" />
     </form>
 {% endblock %}
