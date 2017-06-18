@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
+from django.template import RequestContext
 from django.http import HttpResponse
 from myapp.models import Author, Book, Course, Student, Topic
-from myapp.forms import InterestForm, TopicForm
+from myapp.forms import InterestForm, TopicForm, LoginForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -71,26 +72,80 @@ def addtopic(request):
 
 # allows a user to register as a Student
 def register(request):
-    return render(request, 'myapp/register.html')
-
-# login
-def user_login(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user:
-            if user.is_active:
-                login(request, user)
-                return HttpResponseRedirect(reverse('myapp:index')) #
-            else:
-                return HttpResponse('Your account is disabled.')
+        uf = StudentForm(request.POST)
+        err = 'invalid content,please input again!'
+        if uf.is_valid():
+            username = uf.cleaned_data['username']
+            password = uf.cleaned_data['password']
+            address = uf.cleaned_data['address']
+            city = uf.cleaned_data['city']
+            province = uf.cleaned_data['province']
+            age = uf.cleaned_data['age']
+            if Student.objects.filter(username__exact=username):
+                return render_to_response('myapp/register.html',{'uf':uf,'err':err})
+            nstu = Student()
+            nstu.username = username
+            nstu.password = password
+            nstu.address = address
+            nstu.city = city
+            nstu.province = province
+            nstu.age = age
+            nstu.save()
+            req.session['username'] = username
+            return HttpResponseRedirect('/myapp/index')
         else:
-            return HttpResponse('Invalid login details.')
+            return render_to_response('myapp/register.html',{'uf':uf,'err':err})
     else:
-        return render(request, 'myapp/login.html')
+        uf = StudentForm()
+    return render_to_response('myapp/register.html',{'uf':uf})
+
+def user_login(request):
+    if request.method == 'GET':
+        form = LoginForm()
+        return render_to_response('myapp/login.html', {'form': form,})
+    else:
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = request.POST('username')
+            password = request.POST('password')
+            user = auth.authenticate(username=username, password=password)
+            if user is not None and user.is_active:
+                auth.login(request, user)
+                return render_to_response('myapp/index.html')
+            else:
+                return render_to_response('myapp/login.html', {'form': form,'password_is_wrong':True}, context_instance=RequestContext(request))
+        else:
+            return render_to_response('myapp/login.html', {'form': form,}, context_instance=RequestContext(request))
+
+
+def regsuc(req):
+    username = req.session.get('username')
+    return render_to_response('myapp/regsuc.html', {'username': username})
 
 # logout
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse(('myapp:index')))
+
+def findstudent(request, usnm):
+    usr = Student.objects.get(username = usnm)
+    return HttpResponse(usr.address)
+
+def login(request):
+    if request.method == 'GET':
+        form = LoginForm()
+        return render_to_response('myapp/login.html')
+    else:
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = request.POST.get('username', '')
+            password = request.POST.get('password', '')
+            user = auth.authenticate(username=username, password=password)
+            if user is not None and user.is_active:
+                auth.login(request, user)
+                return render_to_response('myapp/index.html', RequestContext(request))
+            else:
+                return render_to_response('myapp/login.html', RequestContext(request, {'form': form,'password_is_wrong':True}))
+        else:
+            return render_to_response('myapp/login.html', RequestContext(request, {'form': form,}))

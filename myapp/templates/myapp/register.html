@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends 'myapp/base.html' %}
+
+    {% block myhdg %}
+        <h1>Hello Tab!</h1>
+    {% endblock %}
+    {% block body_block %}
+  <form method="post">
+  <font color='red'>{{err}}</font> <br /> <br />
+  Username: <input type="text" name="username"> <br /> <br />
+  Password: <input type="password" name="password"> <br /> <br />
+  E-mail: <input type="text" name="email"> <br /> <br />
+  Telephone: <input type="text" name="tel"> <br /> <br />
+          <input type="submit" value="submit">
+          <input type="reset" value="reset">
+  </form>
+  {% endblock %}
+</body>
+</html>

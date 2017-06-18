@@ -10,8 +10,9 @@ urlpatterns = [
     url(r'^topic/(?P<subject>\w+)/$', views.topicdetail, name = 'topicdetail'),
     url(r'^addtopic/$', views.addtopic, name = 'addtopic'),
     url(r'^register/$', views.register, name = 'register'),
-    url(r'^login/$', views.login, name = 'login'),
-    url(r'^logout/$', views.logout, name = 'logout'),
+    url(r'^login/$', views.user_login, name = 'login'),
+    url(r'^mylogin/$', views.login, name = 'login'),
+    url(r'^logout/$', views.user_logout, name = 'logout'),
 
     url(r'^search-form$', search.search_form),
     url(r'^search$', search.search),

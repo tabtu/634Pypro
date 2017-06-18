@@ -10,7 +10,10 @@
     <body>
         <div>
             <h1>{% block myhdg %}Hello User {% endblock %}</h1>
-            {% block body_block %}*** {% endblock %}
+            {% block body_block %}
+            <a href="/myapp/register/">register</a>
+            <a href="/myapp/login">login</a>
+            {% endblock %}
         </div>
         <hr />
         <div>

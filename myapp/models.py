@@ -78,3 +78,4 @@ class TopicForm(forms.ModelForm):
         fields=['subject', 'intro_course', 'time', 'avg_age']
         widgets={'time': forms.RadioSelect()}
         labels={'time':'Preferred Time', 'avg_age':'What is your age','intro_course':'This should be an introductory level course'}
+        
