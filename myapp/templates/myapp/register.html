@@ -1,25 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    {% extends 'myapp/base.html' %}
+{% extends 'myapp/base.html' %}
 
-    {% block myhdg %}
-        <h1>Hello Tab!</h1>
-    {% endblock %}
-    {% block body_block %}
-  <form method="post">
-  <font color='red'>{{err}}</font> <br /> <br />
-  Username: <input type="text" name="username"> <br /> <br />
-  Password: <input type="password" name="password"> <br /> <br />
-  E-mail: <input type="text" name="email"> <br /> <br />
-  Telephone: <input type="text" name="tel"> <br /> <br />
-          <input type="submit" value="submit">
-          <input type="reset" value="reset">
-  </form>
-  {% endblock %}
-</body>
-</html>
+{% block title %}Register{% endblock %}
+
+{% block body_block %}
+    <h2>Login</h2>
+    <form action="." method = 'post' enctype="multipart/form-data">
+      {% csrf_token %}
+    <ol>
+      <li>Username: <input type="text" name="username"/></li>
+      <li>Password: <input type="password" name="password"/></li>
+      <input type="submit" value = "REGISTER" />
+    </ol>
+    </form>
+    <br>
+    <a href="/myapp/login" >Login</a>
+{% endblock %}
