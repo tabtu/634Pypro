@@ -9,11 +9,15 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 # Index page
-@login_required
 def index(request):
-    courselist = Course.objects.all().order_by('title')[:10]
     topiclist = Topic.objects.all().order_by('subject')[:10]
-    return render(request, 'myapp/index.html', {'courselist': courselist, 'topiclist': topiclist})
+    if 'username' in request.session:
+        firstname = Student.objects.get(username=request.session['username']).first_name
+        mycourses = Course.objects.filter(student__username=request.session['username'])
+        return render_to_response('myapp/index.html', {'firstname': firstname, 'courselist': mycourses, 'topiclist': topiclist})
+    else:
+        courselist = Course.objects.all().order_by('title')[:10]
+        return render(request, 'myapp/index.html', {'courselist': courselist, 'topiclist': topiclist})
 
 
 # about page
@@ -69,15 +73,15 @@ def addtopic(request):
             return HttpResponseRedirect(reverse('myapp:topic'))
     else:
         form = TopicForm()
-    return render(request, 'myapp/addtopic.html', {'form': form, 'topiclist': topiclist})
+    return render(request, 'myapp/addtopic.html', {'form':form, 'topiclist': topiclist})
 
 
 # allows a user to register as a Student
 def register(request):
     if request.method == 'POST':
+        form = StudentForm(request.POST)
         #uf = StudentForm(request.POST)
         usnm = request.POST['username']
-        pswd = request.POST['password']
         #err = 'invalid content,please input again!'
         if usnm.strip():
             #username = uf.cleaned_data['username']
@@ -88,20 +92,17 @@ def register(request):
             #age = uf.cleaned_data['age']
             if Student.objects.filter(username__exact=usnm):
                 return HttpResponse('username has already used, Please change another')
-            nstu = Student()
-            nstu.username = usnm
-            nstu.password = pswd
-            nstu.address = "address"
-            nstu.city = "Windsor"
-            nstu.province = "ON"
-            nstu.age = 16
-            nstu.save()
+            if form.is_valid():
+                usr = form.save(commit=True)
+                usr.num_responses=1
+                usr.save()
             request.session['username'] = usnm
-            return HttpResponseRedirect('myapp:index')
+            return HttpResponseRedirect(reverse('myapp:index'))
         else:
             return HttpResponse('Invalid login details.')
     else:
-        return render(request, 'myapp/register.html')
+        form = StudentForm()
+    return render(request, 'myapp/register.html', {'form':form})
 
 
 def user_login(request):
@@ -112,6 +113,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
+                request.session['username'] = user.username
                 return HttpResponseRedirect(reverse('myapp:index'))
             else:
                 return HttpResponse('Your account is disabled.')

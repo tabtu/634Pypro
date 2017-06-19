@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-from myapp import views
+#from myapp import views
 # if you wanna use templates use
 #from myapp import views
 

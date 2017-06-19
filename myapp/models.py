@@ -52,7 +52,7 @@ class Student(User):
     age = models.IntegerField()
     student = models.ManyToManyField(Course)
     def __str__(self):
-        return self.first_name + ' ' + self.last_name
+        return self.username + ' --- ' + self.first_name + ' ' + self.last_name
     class Meta:
         verbose_name = "Student"
         verbose_name_plural = "Students"
@@ -71,11 +71,3 @@ class Topic(models.Model):
     avg_age =models.IntegerField(default=20)
     def __str__(self):
         return self.subject
-
-class TopicForm(forms.ModelForm):
-    class Meta:
-        model = Topic
-        fields=['subject', 'intro_course', 'time', 'avg_age']
-        widgets={'time': forms.RadioSelect()}
-        labels={'time':'Preferred Time', 'avg_age':'What is your age','intro_course':'This should be an introductory level course'}
-        

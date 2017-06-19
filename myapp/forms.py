@@ -1,5 +1,5 @@
 from django import forms
-from myapp.models import Topic
+from myapp.models import Topic, Student
 
 class TopicForm(forms.ModelForm):
     class Meta:
@@ -13,9 +13,17 @@ class InterestForm(forms.Form):
     age = forms.IntegerField(initial=20)
     comments = forms.CharField(widget=forms.Textarea, label='Additional Comments',required=False)
 
-class StudentForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField()
+class StudentForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields=['username', 'password', 'first_name', 'last_name', 'address', 'city', 'province', 'age']
+        widgets={'password':forms.PasswordInput}
+        labels={'username':'Username', 'password':'Password', 'first_name':'Firstname', 'last_name':'Lastname', 'address':'Address', 'city':'City', 'province':'Province', 'age':'Age'}
+
+
+class StudentForm1(forms.Form):
+    username = forms.CharField(required=True, label=u"Username", error_messages={'required': 'Please Input Username'}, widget=forms.TextInput(attrs={'placeholder':u"Username"}))
+    password = forms.CharField(required=True, label=u"Password", error_messages={'required': u'Please Input Password'}, widget=forms.PasswordInput(attrs={'placeholder':u"Password",}))
     firstname = forms.CharField()
     lastname = forms.CharField()
     address = forms.CharField()

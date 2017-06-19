@@ -3,12 +3,12 @@
 {% block title %}Topic Page{% endblock %}
 
 {% block body_block %}
-    {%  if topiclist %}
+    {% if topiclist %}
         <h2>List of topics:</h2>
              <ol>
-            {%  for topic in topiclist %}
+            {% for topic in topiclist %}
                   <li><a href="/myapp/topic/{{ topic.subject }}" >{{ topic.subject }} </a></li>
-            {%  endfor %}
+            {% endfor %}
              </ol>
     {% else%}
         <strong> There are no available topics!</strong>

@@ -15,7 +15,7 @@
                 <p> Introductory : {{ tid.intro_course }}</p>
                 <p> Average age: {{ tid.avg_age }}</p>
         </ol>
-        <form action="/myapp/submit-form" method="POST">
+        <form action="." method="POST">
             {% csrf_token %}
             {{ form1 }}
             <input type="submit" value="Submit" />

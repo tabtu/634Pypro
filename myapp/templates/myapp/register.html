@@ -6,11 +6,9 @@
     <h2>Login</h2>
     <form action="." method = 'post' enctype="multipart/form-data">
       {% csrf_token %}
-    <ol>
-      <li>Username: <input type="text" name="username"/></li>
-      <li>Password: <input type="password" name="password"/></li>
+      {{ form.as_p }}
       <input type="submit" value = "REGISTER" />
-    </ol>
+
     </form>
     <br>
     <a href="/myapp/login" >Login</a>

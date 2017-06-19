@@ -4,14 +4,28 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="{% static 'myapp/styling.css' %}" />
-        <title>Course Listing APP - {% block title %}Welcome {{username}} !{% endblock %}</title>
+        <title>634 Project</title>
     </head>
 
     <body>
         <div>
-            <h1>{% block myhdg %}Welcome{% endblock %}</h1>
-            <a href="/myapp/register/">register</a>
-            <a href="/myapp/login">login</a>
+            <h1>
+              {% block myhdg %}
+                Welcome
+                {% if firstname %}
+                  <a href="/myapp/users/{{username}}/">{{ firstname }}</a>
+                  <a href="/myapp/logout">logout</a>
+                {% else %}
+                  <a href="/myapp/register/">register</a>
+                  <a href="/myapp/login">login</a>
+                {% endif %}
+              {% endblock %}
+            </h1>
+
+
+
+
+
             {% block body_block %}
             {% endblock %}
         </div>
