@@ -3,7 +3,7 @@
 {% block title %}Register{% endblock %}
 
 {% block body_block %}
-    <h2>Login</h2>
+    <h2>Register</h2>
     <form action="." method = 'post' enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}

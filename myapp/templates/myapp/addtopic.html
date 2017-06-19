@@ -16,12 +16,12 @@
 
 
     <h2>Add a topic:</h2>
-    <form class="addfield" action={% url 'myapp:topic'%} method="post">
+    <form class="addfield" action="." method="post">
 
         {% csrf_token %}
     <ol>
         {% for f in form %}
-            <li> {{ f.label }}:  {{ f }}</li>
+            {{ f.label }}:  {{ f }}<br>
         {% endfor %}
     </ol>
     <input type="submit" value="Save" />

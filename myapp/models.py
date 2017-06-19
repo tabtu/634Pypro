@@ -71,3 +71,9 @@ class Topic(models.Model):
     avg_age =models.IntegerField(default=20)
     def __str__(self):
         return self.subject
+
+class Interest(models.Model):
+    INTERESTED_CHOICES = ((False, 'No'), (True, 'Yes'))
+    interested = models.BooleanField(choices=INTERESTED_CHOICES, default=True)
+    age = models.IntegerField(default=0)
+    comments = models.CharField(max_length=500)

@@ -47,19 +47,27 @@ def topiclist(request):
     return render(request, 'myapp/topic.html', {'topiclist': topiclist})
 
 def topicdetail(request, subject):
-    tid = Topic.objects.get(subject = subject)
+    topic = Topic.objects.get(subject = subject)
     if request.method == 'POST':
-        form1 = InterestForm(request.POST)
-        if form1.is_valid():
-            interest = form1.save(commit=False)
+        form = InterestForm(request.POST)
+        if form.is_valid():
+            interest = form.save(commit=False)
             interest.num_responses = 1
             interest.save()
+            if form.interested == 1:
+                topic.avg_age = (topic.avg_age * topic.num_responses + form.age) / (topic.num_responses + 1)
+                topic.num_responses += 1
+            else:
+                topic.avg_age = (topic.avg_age * topic.num_responses + form.age) / (topic.num_responses)
+            topic.save()
             return HttpResponseRedirect(reverse('myapp:topicdetail'))
         else:
-            form1 = InterestForm()
-    if request.method == 'GET':
-        form1 = InterestForm(request.GET)
-    return render(request, 'myapp/topicdetail.html',{'tform':form1,'tid': tid})
+            form = InterestForm()
+    elif request.method == 'GET':
+        form = InterestForm(request.GET)
+    else:
+        form = InterestForm()
+    return render(request, 'myapp/topicdetail.html',{'form':form, 'topic':topic})
 
 
 def addtopic(request):
@@ -80,24 +88,15 @@ def addtopic(request):
 def register(request):
     if request.method == 'POST':
         form = StudentForm(request.POST)
-        #uf = StudentForm(request.POST)
         usnm = request.POST['username']
-        #err = 'invalid content,please input again!'
         if usnm.strip():
-            #username = uf.cleaned_data['username']
-            #password = uf.cleaned_data['password']
-            #address = uf.cleaned_data['address']
-            #city = uf.cleaned_data['city']
-            #province = uf.cleaned_data['province']
-            #age = uf.cleaned_data['age']
             if Student.objects.filter(username__exact=usnm):
                 return HttpResponse('username has already used, Please change another')
             if form.is_valid():
                 usr = form.save(commit=True)
                 usr.num_responses=1
                 usr.save()
-            request.session['username'] = usnm
-            return HttpResponseRedirect(reverse('myapp:index'))
+            return HttpResponseRedirect(reverse('myapp:login'))
         else:
             return HttpResponse('Invalid login details.')
     else:
@@ -126,7 +125,11 @@ def user_login(request):
 # logout
 @login_required
 def user_logout(request):
-    logout(request)
+    try:
+        logout(request)
+        del request.session['username']
+    except:
+        pass
     return HttpResponseRedirect(reverse(('myapp:index')))
 
 
