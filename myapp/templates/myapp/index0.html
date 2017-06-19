@@ -1,0 +1,31 @@
+{% extends 'myapp/base.html' %}
+{% block body_block %}
+    <table>
+      <tr>
+        <td>
+    {% if courselist %}
+        <h2>List of courses</h2>
+        <ul>
+            {% for course in courselist %}
+                <li><a href="/myapp/course/{{ course.course_no }}" >{{ course.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else%}
+        <strong> There are no available courses!</strong>
+    {% endif %}
+        </td>
+        <td>
+    {% if topiclist %}
+        <h2>List of topics</h2>
+        <ul>
+            {% for topic in topiclist %}
+                <li><a href="/myapp/topic/{{ topic.subject }}" >{{ topic.subject }} </a></li>
+            {% endfor %}
+        </ul>
+    {% else%}
+        <strong> There are no available topics!</strong>
+    {% endif %}
+        </td>
+      </tr>
+    </table>
+{% endblock %}
