@@ -14,7 +14,7 @@ def index(request):
     if 'username' in request.session:
         firstname = Student.objects.get(username=request.session['username']).first_name
         mycourses = Course.objects.filter(student__username=request.session['username'])
-        return render_to_response('myapp/indexm.html', {'firstname': firstname, 'courselist': mycourses, 'topiclist': topiclist})
+        return render_to_response('myapp/index.html', {'firstname': firstname, 'courselist': mycourses, 'topiclist': topiclist})
     else:
         courselist = Course.objects.all().order_by('title')[:10]
         return render(request, 'myapp/index.html', {'courselist': courselist, 'topiclist': topiclist})
