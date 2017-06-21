@@ -1,11 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Topic Details</title>
-</head>
-<body>
 {% extends 'myapp/base.html' %}
+{% load staticfiles %}
+
+{% block background_block %}
+<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url({% static 'images/img_bg_2.jpg' %});" data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 text-center">
+				<div class="display-t">
+					<div class="display-tc animate-box" data-animate-effect="fadeIn">
+            {% if topic %}
+						  <h1>{{ topic.subject }}</h1>
+              <h3>Interested people: {{ topic.num_responses}} </h3>
+              <h3>Average age: {{ topic.avg_age }}</h3>
+            {% else %}
+              <h1>There is no available topic!</h1>
+            {% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+{% endblock %}
+
+
 {% block body_block %}
     {% if topic %}
         <h2>Topic</h2>
@@ -23,7 +42,7 @@
         </form>
 
     {% else %}
-        <strong>There are no available courses!</strong>
+        <strong>There is no available topic!</strong>
     {% endif %}
 {#<p><a href="/myapp">Back</a></p>#}
 
