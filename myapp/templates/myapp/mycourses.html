@@ -9,8 +9,16 @@
 			<div class="col-md-8 col-md-offset-2 text-center">
 				<div class="display-t">
 					<div class="display-tc animate-box" data-animate-effect="fadeIn">
-						<h1>Find Courses</h1>
-
+						<h1>My Courses</h1>
+						{% if mycourses %}
+				    <ol>
+				    {% for course in mycourses %}
+					  	<li><a href="/myapp/course/{{ course.course_no }}" >{{ course.title }} </a></li>
+				    {% endfor %}
+				    </ol>
+				    {% else %}
+				      <strong> There are no available courses!</strong>
+				    {% endif %}
 					</div>
 				</div>
 			</div>

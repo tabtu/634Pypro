@@ -14,10 +14,10 @@ def index(req):
     if 'username' in req.session:
         firstname = Student.objects.get(username=req.session['username']).first_name
         mycourses = Course.objects.filter(student__username=req.session['username'])
-        return render_to_response('myapp/index.html', {'firstname': firstname, 'courselist': mycourses, 'topiclist': topiclist})
+        return render_to_response('myapp/index.html', {'firstname': firstname})
     else:
         courselist = Course.objects.all().order_by('title')[:10]
-        return render(req, 'myapp/index.html', {'courselist': courselist, 'topiclist': topiclist})
+        return render(req, 'myapp/index.html')
 
 # about page
 @login_required
@@ -26,6 +26,11 @@ def about(req):
 
 # course page
 def courselist(req):
+    courselist = Course.objects.all().order_by('title')[:10]
+    return render(req, 'myapp/course.html', {'courselist': courselist})
+
+@login_required
+def mycourses(req):
     if 'username' in req.session:
         mycourses = Course.objects.filter(student__username=req.session['username'])
     courselist = Course.objects.all().order_by('title')[:10]

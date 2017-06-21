@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
+from django.contrib.auth.views import login, logout_then_login
+
 #from myapp import views
 # if you wanna use templates use
 #from myapp import views
@@ -22,4 +24,6 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^myapp/', include('myapp.urls', namespace = 'myapp')),
+    #url(r'^accounts/login/$',  login, {'template_name': 'myapp/login.html'}),  # 指定登录页面模板
+    #url(r'^accounts/logout/$', logout_then_login),    # 退出登录，并跳转到登录页面
 ]
