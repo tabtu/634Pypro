@@ -18,7 +18,6 @@ class Author(models.Model):
     def __str__(self):
         return self.firstname + ' ' + self.lastname
 
-
 # the field of Book
 class Book(models.Model):
     title = models.CharField(max_length=100)
@@ -27,7 +26,6 @@ class Book(models.Model):
     numpages = models.IntegerField(default=0)
     def __str__(self):
         return self.title
-
 
 # the field of Course
 class Course(models.Model):
@@ -71,9 +69,3 @@ class Topic(models.Model):
     avg_age =models.IntegerField(default=20)
     def __str__(self):
         return self.subject
-
-class Interest(models.Model):
-    INTERESTED_CHOICES = ((False, 'No'), (True, 'Yes'))
-    interested = models.BooleanField(choices=INTERESTED_CHOICES, default=True)
-    age = models.IntegerField(default=0)
-    comments = models.CharField(max_length=500)

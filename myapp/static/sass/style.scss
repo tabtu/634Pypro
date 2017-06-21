@@ -3,7 +3,7 @@ $font-primary: 'Work Sans', Arial, sans-serif;
 
 
 // Overrides
-$grid-gutter-width: 40px !default; 
+$grid-gutter-width: 40px !default;
 $border-radius-base:  4px !default;
 $padding-base-vertical: 14px !default;
 
@@ -54,16 +54,16 @@ $form-group-margin-bottom:       30px !default;
           border-radius: $radius;
 }
 @mixin flex() {
-	display: -webkit-box;      
-  	display: -moz-box;         
-  	display: -ms-flexbox;      
-  	display: -webkit-flex;     
-  	display: flex;             
+	display: -webkit-box;
+  	display: -moz-box;
+  	display: -ms-flexbox;
+  	display: -webkit-flex;
+  	display: flex;
 }
 @mixin flexwrap() {
 	flex-wrap: wrap;
-	-webkit-flex-wrap: wrap; 
-	-moz-flex-wrap: wrap; 
+	-webkit-flex-wrap: wrap;
+	-moz-flex-wrap: wrap;
 }
 
 @font-face {
@@ -78,7 +78,7 @@ $form-group-margin-bottom:       30px !default;
 }
 
 @mixin icomoon() {
-	
+
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -90,10 +90,10 @@ $form-group-margin-bottom:       30px !default;
 	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	
+
 }
 
-// Import 
+// Import
 @import 'bootstrap/mixins';
 @import 'bootstrap/variables';
 
@@ -102,7 +102,7 @@ $form-group-margin-bottom:       30px !default;
 
 /* =======================================================
 *
-* 	Template Style 
+* 	Template Style
 *
 * ======================================================= */
 
@@ -121,9 +121,9 @@ body {
 	height: 100%;
 	@include transition(.5s);
 	.offcanvas & {
-		overflow: hidden;	
+		overflow: hidden;
 		position: absolute;
-		
+
 		&:after {
 			@include transition(2s);
 			position: absolute;
@@ -170,7 +170,7 @@ h1, h2, h3, h4, h5, h6, figure {
   background: $brand-primary;
 }
 
-.fh5co-nav {
+.mac634-nav {
 	position: absolute;
 	top: 0;
 	margin: 0;
@@ -184,10 +184,10 @@ h1, h2, h3, h4, h5, h6, figure {
 	.top-menu{
 		padding: 28px 0;
 	}
-	.top{		
+	.top{
 		padding: 7px 0;
 		margin-bottom: 0;
-		.num, .fh5co-social{
+		.num, .mac634-social{
 			display: inline-block;
 			margin: 0;
 		}
@@ -199,7 +199,7 @@ h1, h2, h3, h4, h5, h6, figure {
 			border-right: 1px solid rgba($brand-white,.2);
 			letter-spacing: 0px;
 		}
-		.fh5co-social{
+		.mac634-social{
 			li{
 				font-size: 14px;
 				a{
@@ -211,7 +211,7 @@ h1, h2, h3, h4, h5, h6, figure {
 			}
 		}
 	}
-	#fh5co-logo {
+	#mac634-logo {
 		font-size: 24px;
 		margin: 0;
 		padding: 0;
@@ -282,7 +282,7 @@ h1, h2, h3, h4, h5, h6, figure {
 						border-width: 8px;
 						margin-left: -8px;
 					}
-					
+
 					li {
 						display: block;
 						margin-bottom: 7px;
@@ -341,15 +341,15 @@ h1, h2, h3, h4, h5, h6, figure {
 		}
 	}
 }
-#fh5co-header,
-#fh5co-counter,
-.fh5co-bg {
+#mac634-header,
+#mac634-counter,
+.mac634-bg {
 	background-size: cover;
 	background-position: top center;
 	background-repeat: no-repeat;
 	position: relative;
 }
-.fh5co-bg {
+.mac634-bg {
 	background-size: cover;
 	background-position: center center;
 	position: relative;
@@ -357,7 +357,7 @@ h1, h2, h3, h4, h5, h6, figure {
 	float: left;
 }
 
-.fh5co-video {
+.mac634-video {
 	// height: 450px;
 	overflow: hidden;
 	// @include border-radius(7px);
@@ -376,12 +376,12 @@ h1, h2, h3, h4, h5, h6, figure {
 		display: table;
 		text-align: center;
 		background: $brand-white;
-		
+
 		-webkit-box-shadow: 0px 14px 30px -15px rgba(0,0,0,0.75);
 		-moz-box-shadow: 0px 14px 30px -15px rgba(0,0,0,0.75);
 		box-shadow: 0px 14px 30px -15px rgba(0,0,0,0.75);
 		@include border-radius(50%);
-		
+
 		i {
 			text-align: center;
 			display: table-cell;
@@ -401,7 +401,7 @@ h1, h2, h3, h4, h5, h6, figure {
 	}
 	&:hover {
 		.overlay {
-			background: rgba(0, 0, 0, .7);		
+			background: rgba(0, 0, 0, .7);
 		}
 		a {
 			// position: relative;
@@ -410,11 +410,11 @@ h1, h2, h3, h4, h5, h6, figure {
 			-ms-transform: scale(1.2);
 			-o-transform: scale(1.2);
 			transform: scale(1.2);
-			
+
 		}
 	}
 }
-.fh5co-cover {
+.mac634-cover {
 	height: 800px;
 
 	background-size: cover;
@@ -432,7 +432,7 @@ h1, h2, h3, h4, h5, h6, figure {
 		right: 0;
 		background: rgba($brand-black,.4);
 	}
-	> .fh5co-container {
+	> .mac634-container {
 		position: relative;
 		z-index: 10;
 	}
@@ -449,9 +449,9 @@ h1, h2, h3, h4, h5, h6, figure {
 		@media screen and (max-width: $screen-sm) {
 			height: 600px;
 		}
-	}	
+	}
 
-	&.fh5co-cover-sm {
+	&.mac634-cover-sm {
 		height: 600px;
 		@media screen and (max-width: $screen-sm) {
 			height: 400px;
@@ -464,16 +464,16 @@ h1, h2, h3, h4, h5, h6, figure {
 			@media screen and (max-width: $screen-sm) {
 				height: 400px;
 			}
-		}	
+		}
 	}
 }
 
 
 
 
-#fh5co-header,
-#fh5co-counter,
-.fh5co-cover {
+#mac634-header,
+#mac634-counter,
+.mac634-cover {
 	.display-tc {
 		display: table-cell!important;
 		vertical-align: middle;
@@ -543,18 +543,18 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 
-.fh5co-bg-section{
+.mac634-bg-section{
 	background: rgba($brand-black,.05);
 }
 
-#fh5co-explore,
-#fh5co-pricing,
-#fh5co-testimonial,
-#fh5co-started,
-#fh5co-project,
-#fh5co-blog,
-#fh5co-contact,
-#fh5co-footer{
+#mac634-explore,
+#mac634-pricing,
+#mac634-testimonial,
+#mac634-started,
+#mac634-project,
+#mac634-blog,
+#mac634-contact,
+#mac634-footer{
 	padding: 7em 0;
 	clear: both;
 	@media screen and (max-width: $screen-sm) {
@@ -562,19 +562,19 @@ h1, h2, h3, h4, h5, h6, figure {
 	}
 }
 
-#fh5co-counter{
+#mac634-counter{
 	padding: 3em 0;
 	clear: both;
 }
 
-#fh5co-steps{
+#mac634-steps{
 	clear: both;
 	padding-bottom: 7em;
 }
 
 
 // Counters
-.fh5co-counters {
+.mac634-counters {
 	padding: 3em 0;
 	background-size: cover;
 	background-attachment: fixed;
@@ -582,7 +582,7 @@ h1, h2, h3, h4, h5, h6, figure {
 	.counter-wrap{
 		border: 1px solid red !important;
 	}
-	.fh5co-counter {
+	.mac634-counter {
 		font-size: 44px;
 		display: block;
 		color: rgba($brand-black,.7);
@@ -591,7 +591,7 @@ h1, h2, h3, h4, h5, h6, figure {
 		font-weight: 400;
 		margin-bottom: .3em;
 	}
-	.fh5co-counter-label {
+	.mac634-counter-label {
 		color: rgba($brand-black,.5);
 		text-transform: uppercase;
 		font-size: 14px;
@@ -601,8 +601,8 @@ h1, h2, h3, h4, h5, h6, figure {
 	}
 }
 
-#fh5co-explore{
-	.fh5co-explore1{
+#mac634-explore{
+	.mac634-explore1{
 		margin-bottom: 7em;
 	}
 }
@@ -645,14 +645,14 @@ h1, h2, h3, h4, h5, h6, figure {
 				top: 0;
 				font-size: 18px;
 				color: $brand-primary;
-			}	
+			}
 		}
 	}
 }
 
 
 
-.fh5co-social-icons {
+.mac634-social-icons {
 	margin: 0;
 	padding: 0;
 	li {
@@ -672,7 +672,7 @@ h1, h2, h3, h4, h5, h6, figure {
 	}
 }
 
-.fh5co-contact-info {
+.mac634-contact-info {
 	ul {
 		padding: 0;
 		margin: 0;
@@ -690,7 +690,7 @@ h1, h2, h3, h4, h5, h6, figure {
 			}
 			&.address {
 				&:before {
-					font-size: 30px;	
+					font-size: 30px;
 					content: "\e9d1";
 				}
 			}
@@ -719,7 +719,7 @@ h1, h2, h3, h4, h5, h6, figure {
 .proj-bottom{
 	padding-bottom: 4em;
 }
-.fh5co-project {
+.mac634-project {
 	margin-bottom: 30px;
 	> a {
 		display: block;
@@ -795,7 +795,7 @@ h1, h2, h3, h4, h5, h6, figure {
 				transform: scale(1.1);
 
 				@media screen and (max-width: $screen-sm ) {
-					
+
 					-webkit-transform: scale(1.0);
 					-moz-transform: scale(1.0);
 					-o-transform: scale(1.0);
@@ -811,9 +811,9 @@ h1, h2, h3, h4, h5, h6, figure {
 	float: left;
 }
 
-.fh5co-heading {
+.mac634-heading {
 	margin-bottom: 5em;
-	&.fh5co-heading-sm {
+	&.mac634-heading-sm {
 		margin-bottom: 2em;
 	}
 	h2 {
@@ -836,7 +836,7 @@ h1, h2, h3, h4, h5, h6, figure {
 	}
 }
 
-#fh5co-testimonial {
+#mac634-testimonial {
 	background: #efefef;
 	.testimony-slide{
 		// display: none;
@@ -852,7 +852,7 @@ h1, h2, h3, h4, h5, h6, figure {
 		figure{
 			margin-bottom: 10px;
 			@include inline-block;
-			
+
 			img {
 				width: 100px;
 				@include border-radius(50%);
@@ -868,7 +868,7 @@ h1, h2, h3, h4, h5, h6, figure {
 			@media screen and (max-width: $screen-md) {
 				width: 100%;
 			}
-			
+
 		}
 
 	}
@@ -902,8 +902,8 @@ h1, h2, h3, h4, h5, h6, figure {
 .bs-wizard > .bs-wizard-step {padding: 0; position: relative;}
 .bs-wizard > .bs-wizard-step .bs-wizard-stepnum { font-size: 16px; margin-bottom: 10px;}
 .bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 14px; padding: 20px;}
-.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; display: block; background: #fbe8aa; top: 45px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%;} 
-.bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {content: ' '; width: 14px; height: 14px; background: #fbbd19; border-radius: 50px; position: absolute; top: 8px; left: 8px; } 
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; display: block; background: #fbe8aa; top: 45px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%;}
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {content: ' '; width: 14px; height: 14px; background: #fbbd19; border-radius: 50px; position: absolute; top: 8px; left: 8px; }
 .bs-wizard > .bs-wizard-step > .progress {position: relative; border-radius: 0px; height: 8px; box-shadow: none; margin: 22px 0;}
 .bs-wizard > .bs-wizard-step > .progress > .progress-bar {width:0px; box-shadow: none; background: #fbe8aa;}
 .bs-wizard > .bs-wizard-step.complete > .progress > .progress-bar {width:100%;}
@@ -916,7 +916,7 @@ h1, h2, h3, h4, h5, h6, figure {
 .bs-wizard > .bs-wizard-step:last-child  > .progress {width: 50%;}
 .bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
 
-#fh5co-started {
+#mac634-started {
 	background-size: cover;
 	background-position: top center;
 	background-repeat: no-repeat;
@@ -932,8 +932,8 @@ h1, h2, h3, h4, h5, h6, figure {
 		right: 0;
 		background: rgba($brand-black,.7);
 	}
-	
-	.fh5co-heading {
+
+	.mac634-heading {
 		h2 {
 			color: $brand-white;
 			margin-bottom: 20px !important;
@@ -956,15 +956,15 @@ h1, h2, h3, h4, h5, h6, figure {
 		}
 
 		&:-moz-placeholder { /* Firefox 18- */
-		   color: $brand-white;  
+		   color: $brand-white;
 		}
 
 		&::-moz-placeholder {  /* Firefox 19+ */
-		   color: $brand-white;  
+		   color: $brand-white;
 		}
 
-		&:-ms-input-placeholder {  
-		   color: $brand-white;  
+		&:-ms-input-placeholder {
+		   color: $brand-white;
 		}
 		@include transition(.5s);
 		&:focus {
@@ -996,7 +996,7 @@ h1, h2, h3, h4, h5, h6, figure {
 
 
 // BLOG
-.fh5co-blog{
+.mac634-blog{
 	margin-bottom: 60px;
 	> a{
 		display: block;
@@ -1063,7 +1063,7 @@ h1, h2, h3, h4, h5, h6, figure {
 	@include border-radius(5px);
 	margin-bottom: 40px;
 	position: relative;
-	
+
 
 	&.popular{
 		.btn-select-plan{
@@ -1089,7 +1089,7 @@ h1, h2, h3, h4, h5, h6, figure {
     		margin: 0;
     		font-size: 16px;
     		padding: 8px 10px;
-    		
+
     		&.color{
     			background: rgba($brand-black,.04);
     		}
@@ -1133,11 +1133,11 @@ h1, h2, h3, h4, h5, h6, figure {
 	}
 }
 
-#fh5co-footer {
+#mac634-footer {
 	background: #efefef;
-	.fh5co-footer-links {
+	.mac634-footer-links {
 		padding: 0;
-		margin: 0;	
+		margin: 0;
 		li {
 			padding: 0;
 			margin: 0;
@@ -1151,7 +1151,7 @@ h1, h2, h3, h4, h5, h6, figure {
 			}
 		}
 	}
-	.fh5co-widget {
+	.mac634-widget {
 		margin-bottom: 30px;
 		@media screen and (max-width: $screen-sm){
 			text-align: left;
@@ -1184,7 +1184,7 @@ h1, h2, h3, h4, h5, h6, figure {
 
 
 // off canvas
-#fh5co-offcanvas {
+#mac634-offcanvas {
 	position: absolute;
 	z-index: 1901;
 	width: 270px;
@@ -1288,13 +1288,13 @@ h1, h2, h3, h4, h5, h6, figure {
 			text-decoration: none;
 			outline: none;
 		}
-	}	
+	}
 }
 
 
 
 // Burger Menu
-.fh5co-nav-toggle {
+.mac634-nav-toggle {
   width:25px;
   height:25px;
   cursor: pointer;
@@ -1329,7 +1329,7 @@ h1, h2, h3, h4, h5, h6, figure {
 		  transition:all .2s ease-out;
 	  }
   }
-  &.fh5co-nav-white {
+  &.mac634-nav-white {
   	> i {
   		color:$brand-white;
   		background: $brand-white;
@@ -1340,22 +1340,22 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 
-.fh5co-nav-toggle i::before {
+.mac634-nav-toggle i::before {
   top: -7px;
 }
-.fh5co-nav-toggle i::after {
+.mac634-nav-toggle i::after {
   bottom: -7px;
 }
-.fh5co-nav-toggle:hover i::before {
+.mac634-nav-toggle:hover i::before {
   top: -10px;
 }
-.fh5co-nav-toggle:hover i::after {
+.mac634-nav-toggle:hover i::after {
   bottom: -10px;
 }
-.fh5co-nav-toggle.active i {
+.mac634-nav-toggle.active i {
 	background: transparent;
 }
-.fh5co-nav-toggle.active i::before {
+.mac634-nav-toggle.active i::before {
   top:0;
   -webkit-transform: rotateZ(45deg);
      -moz-transform: rotateZ(45deg);
@@ -1363,7 +1363,7 @@ h1, h2, h3, h4, h5, h6, figure {
        -o-transform: rotateZ(45deg);
           transform: rotateZ(45deg);
 }
-.fh5co-nav-toggle.active i::after {
+.mac634-nav-toggle.active i::after {
   bottom:0;
   -webkit-transform: rotateZ(-45deg);
      -moz-transform: rotateZ(-45deg);
@@ -1371,7 +1371,7 @@ h1, h2, h3, h4, h5, h6, figure {
        -o-transform: rotateZ(-45deg);
           transform: rotateZ(-45deg);
 }
-.fh5co-nav-toggle {
+.mac634-nav-toggle {
   position: absolute;
   right: 0px;
   top: 65px;
@@ -1556,7 +1556,7 @@ h1, h2, h3, h4, h5, h6, figure {
 	padding-bottom: 2em!important;
 }
 
-.fh5co-loader {
+.mac634-loader {
 	position: fixed;
 	left: 0px;
 	top: 0px;

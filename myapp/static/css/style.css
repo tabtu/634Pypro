@@ -90,7 +90,7 @@ h1, h2, h3, h4, h5, h6, figure {
 	font-size:0;
 	overflow:hidden;
 }
-.fh5co-nav {
+.mac634-nav {
   position: absolute;
   top: 0;
   margin: 0;
@@ -99,18 +99,18 @@ h1, h2, h3, h4, h5, h6, figure {
   padding: 0;
   z-index: 1001;
 }
-.fh5co-nav .top-menu {
+.mac634-nav .top-menu {
   padding: 28px 0;
 }
-.fh5co-nav .top {
+.mac634-nav .top {
   padding: 7px 0;
   margin-bottom: 0;
 }
-.fh5co-nav .top .num, .fh5co-nav .top .fh5co-social {
+.mac634-nav .top .num, .mac634-nav .top .mac634-social {
   display: inline-block;
   margin: 0;
 }
-.fh5co-nav .top .num {
+.mac634-nav .top .num {
   color: rgba(255, 255, 255, 0.6);
   font-size: 13px;
   padding-right: 10px;
@@ -118,16 +118,16 @@ h1, h2, h3, h4, h5, h6, figure {
   border-right: 1px solid rgba(255, 255, 255, 0.2);
   letter-spacing: 0px;
 }
-.fh5co-nav .top .fh5co-social li {
+.mac634-nav .top .mac634-social li {
   font-size: 14px;
 }
-.fh5co-nav .top .fh5co-social li a {
+.mac634-nav .top .mac634-social li a {
   padding: 0 7px;
 }
-.fh5co-nav .top .fh5co-social li a i {
+.mac634-nav .top .mac634-social li a i {
   font-size: 14px;
 }
-.fh5co-nav #fh5co-logo {
+.mac634-nav #mac634-logo {
   font-size: 24px;
   margin: 0;
   padding: 0;
@@ -136,29 +136,29 @@ h1, h2, h3, h4, h5, h6, figure {
   font-weight: 700;
   font-family: "Work Sans", Arial, sans-serif;
 }
-.fh5co-nav #fh5co-logo a span {
+.mac634-nav #mac634-logo a span {
   color: #EA9215;
 }
-.fh5co-nav a {
+.mac634-nav a {
   padding: 5px 10px;
   color: #fff;
 }
 @media screen and (max-width: 768px) {
-  .fh5co-nav .menu-1 {
+  .mac634-nav .menu-1 {
     display: none;
   }
 }
-.fh5co-nav ul {
+.mac634-nav ul {
   padding: 0;
   margin: 5px 0 0 0;
 }
-.fh5co-nav ul li {
+.mac634-nav ul li {
   padding: 0;
   margin: 0;
   list-style: none;
   display: inline;
 }
-.fh5co-nav ul li a {
+.mac634-nav ul li a {
   font-size: 15px;
   padding: 30px 15px;
   color: rgba(255, 255, 255, 0.5);
@@ -166,13 +166,13 @@ h1, h2, h3, h4, h5, h6, figure {
   -o-transition: 0.5s;
   transition: 0.5s;
 }
-.fh5co-nav ul li a:hover, .fh5co-nav ul li a:focus, .fh5co-nav ul li a:active {
+.mac634-nav ul li a:hover, .mac634-nav ul li a:focus, .mac634-nav ul li a:active {
   color: white;
 }
-.fh5co-nav ul li.has-dropdown {
+.mac634-nav ul li.has-dropdown {
   position: relative;
 }
-.fh5co-nav ul li.has-dropdown .dropdown {
+.mac634-nav ul li.has-dropdown .dropdown {
   width: 140px;
   -webkit-box-shadow: 0px 14px 33px -9px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 14px 33px -9px rgba(0, 0, 0, 0.75);
@@ -194,7 +194,7 @@ h1, h2, h3, h4, h5, h6, figure {
   -o-transition: 0s;
   transition: 0s;
 }
-.fh5co-nav ul li.has-dropdown .dropdown:before {
+.mac634-nav ul li.has-dropdown .dropdown:before {
   bottom: 100%;
   left: 40px;
   border: solid transparent;
@@ -207,14 +207,14 @@ h1, h2, h3, h4, h5, h6, figure {
   border-width: 8px;
   margin-left: -8px;
 }
-.fh5co-nav ul li.has-dropdown .dropdown li {
+.mac634-nav ul li.has-dropdown .dropdown li {
   display: block;
   margin-bottom: 7px;
 }
-.fh5co-nav ul li.has-dropdown .dropdown li:last-child {
+.mac634-nav ul li.has-dropdown .dropdown li:last-child {
   margin-bottom: 0;
 }
-.fh5co-nav ul li.has-dropdown .dropdown li a {
+.mac634-nav ul li.has-dropdown .dropdown li a {
   padding: 2px 0;
   display: block;
   color: #999999;
@@ -223,17 +223,17 @@ h1, h2, h3, h4, h5, h6, figure {
   font-size: 13px;
   letter-spacing: 0;
 }
-.fh5co-nav ul li.has-dropdown .dropdown li a:hover {
+.mac634-nav ul li.has-dropdown .dropdown li a:hover {
   color: #fff;
 }
-.fh5co-nav ul li.has-dropdown:hover a, .fh5co-nav ul li.has-dropdown:focus a {
+.mac634-nav ul li.has-dropdown:hover a, .mac634-nav ul li.has-dropdown:focus a {
   color: #fff;
 }
-.fh5co-nav ul li.btn-cta a {
+.mac634-nav ul li.btn-cta a {
   padding: 30px 0px !important;
   color: #fff;
 }
-.fh5co-nav ul li.btn-cta a span {
+.mac634-nav ul li.btn-cta a span {
   background: rgba(255, 255, 255, 0.2);
   padding: 4px 10px;
   display: -moz-inline-stack;
@@ -248,25 +248,25 @@ h1, h2, h3, h4, h5, h6, figure {
   -ms-border-radius: 100px;
   border-radius: 100px;
 }
-.fh5co-nav ul li.btn-cta a:hover span {
+.mac634-nav ul li.btn-cta a:hover span {
   -webkit-box-shadow: 0px 14px 20px -9px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 14px 20px -9px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 14px 20px -9px rgba(0, 0, 0, 0.75);
 }
-.fh5co-nav ul li.active > a {
+.mac634-nav ul li.active > a {
   color: #fff !important;
 }
 
-#fh5co-header,
-#fh5co-counter,
-.fh5co-bg {
+#mac634-header,
+#mac634-counter,
+.mac634-bg {
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
   position: relative;
 }
 
-.fh5co-bg {
+.mac634-bg {
   background-size: cover;
   background-position: center center;
   position: relative;
@@ -274,15 +274,15 @@ h1, h2, h3, h4, h5, h6, figure {
   float: left;
 }
 
-.fh5co-video {
+.mac634-video {
   overflow: hidden;
 }
 @media screen and (max-width: 992px) {
-  .fh5co-video {
+  .mac634-video {
     height: 450px;
   }
 }
-.fh5co-video a {
+.mac634-video a {
   z-index: 1001;
   position: absolute;
   top: 50%;
@@ -302,13 +302,13 @@ h1, h2, h3, h4, h5, h6, figure {
   -ms-border-radius: 50%;
   border-radius: 50%;
 }
-.fh5co-video a i {
+.mac634-video a i {
   text-align: center;
   display: table-cell;
   vertical-align: middle;
   font-size: 40px;
 }
-.fh5co-video .overlay {
+.mac634-video .overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -319,10 +319,10 @@ h1, h2, h3, h4, h5, h6, figure {
   -o-transition: 0.5s;
   transition: 0.5s;
 }
-.fh5co-video:hover .overlay {
+.mac634-video:hover .overlay {
   background: rgba(0, 0, 0, 0.7);
 }
-.fh5co-video:hover a {
+.mac634-video:hover a {
   -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
   -ms-transform: scale(1.2);
@@ -330,7 +330,7 @@ h1, h2, h3, h4, h5, h6, figure {
   transform: scale(1.2);
 }
 
-.fh5co-cover {
+.mac634-cover {
   height: 800px;
   background-size: cover;
   background-position: top center;
@@ -339,7 +339,7 @@ h1, h2, h3, h4, h5, h6, figure {
   float: left;
   width: 100%;
 }
-.fh5co-cover .overlay {
+.mac634-cover .overlay {
   z-index: 0;
   position: absolute;
   bottom: 0;
@@ -348,17 +348,17 @@ h1, h2, h3, h4, h5, h6, figure {
   right: 0;
   background: rgba(0, 0, 0, 0.4);
 }
-.fh5co-cover > .fh5co-container {
+.mac634-cover > .mac634-container {
   position: relative;
   z-index: 10;
 }
 @media screen and (max-width: 768px) {
-  .fh5co-cover {
+  .mac634-cover {
     height: 600px;
   }
 }
-.fh5co-cover .display-t,
-.fh5co-cover .display-tc {
+.mac634-cover .display-t,
+.mac634-cover .display-tc {
   z-index: 9;
   height: 700px;
   display: table;
@@ -366,204 +366,204 @@ h1, h2, h3, h4, h5, h6, figure {
   margin-top: 100px;
 }
 @media screen and (max-width: 768px) {
-  .fh5co-cover .display-t,
-  .fh5co-cover .display-tc {
+  .mac634-cover .display-t,
+  .mac634-cover .display-tc {
     height: 600px;
   }
 }
 
-.fh5co-cover.fh5co-cover-ti {
+.mac634-cover.mac634-cover-ti {
   height: 100px;
 }
 @media screen and (max-width: 168px) {
-  .fh5co-cover.fh5co-cover-ti {
+  .mac634-cover.mac634-cover-ti {
     height: 200px;
   }
 }
-.fh5co-cover.fh5co-cover-ti .display-t,
-.fh5co-cover.fh5co-cover-ti .display-tc {
+.mac634-cover.mac634-cover-ti .display-t,
+.mac634-cover.mac634-cover-ti .display-tc {
   height: 200px;
   display: table;
   width: 100%;
 }
 @media screen and (max-width: 168px) {
-  .fh5co-cover.fh5co-cover-ti .display-t,
-  .fh5co-cover.fh5co-cover-ti .display-tc {
+  .mac634-cover.mac634-cover-ti .display-t,
+  .mac634-cover.mac634-cover-ti .display-tc {
     height: 200px;
   }
 }
 
-.fh5co-cover.fh5co-cover-sm {
+.mac634-cover.mac634-cover-sm {
   height: 600px;
 }
 @media screen and (max-width: 768px) {
-  .fh5co-cover.fh5co-cover-sm {
+  .mac634-cover.mac634-cover-sm {
     height: 400px;
   }
 }
-.fh5co-cover.fh5co-cover-sm .display-t,
-.fh5co-cover.fh5co-cover-sm .display-tc {
+.mac634-cover.mac634-cover-sm .display-t,
+.mac634-cover.mac634-cover-sm .display-tc {
   height: 600px;
   display: table;
   width: 100%;
 }
 @media screen and (max-width: 768px) {
-  .fh5co-cover.fh5co-cover-sm .display-t,
-  .fh5co-cover.fh5co-cover-sm .display-tc {
+  .mac634-cover.mac634-cover-sm .display-t,
+  .mac634-cover.mac634-cover-sm .display-tc {
     height: 400px;
   }
 }
 
-#fh5co-header .display-tc,
-#fh5co-counter .display-tc,
-.fh5co-cover .display-tc {
+#mac634-header .display-tc,
+#mac634-counter .display-tc,
+.mac634-cover .display-tc {
   display: table-cell !important;
   vertical-align: middle;
 }
-#fh5co-header .display-tc h1, #fh5co-header .display-tc h2,
-#fh5co-counter .display-tc h1,
-#fh5co-counter .display-tc h2,
-.fh5co-cover .display-tc h1,
-.fh5co-cover .display-tc h2 {
+#mac634-header .display-tc h1, #mac634-header .display-tc h2,
+#mac634-counter .display-tc h1,
+#mac634-counter .display-tc h2,
+.mac634-cover .display-tc h1,
+.mac634-cover .display-tc h2 {
   margin: 0;
   padding: 0;
   color: white;
 }
-#fh5co-header .display-tc h1,
-#fh5co-counter .display-tc h1,
-.fh5co-cover .display-tc h1 {
+#mac634-header .display-tc h1,
+#mac634-counter .display-tc h1,
+.mac634-cover .display-tc h1 {
   margin-bottom: 20px;
   font-size: 54px;
   line-height: 1.3;
   font-weight: 300;
 }
 @media screen and (max-width: 768px) {
-  #fh5co-header .display-tc h1,
-  #fh5co-counter .display-tc h1,
-  .fh5co-cover .display-tc h1 {
+  #mac634-header .display-tc h1,
+  #mac634-counter .display-tc h1,
+  .mac634-cover .display-tc h1 {
     font-size: 30px;
   }
 }
-#fh5co-header .display-tc h2,
-#fh5co-counter .display-tc h2,
-.fh5co-cover .display-tc h2 {
+#mac634-header .display-tc h2,
+#mac634-counter .display-tc h2,
+.mac634-cover .display-tc h2 {
   font-size: 20px;
   line-height: 1.5;
   margin-bottom: 30px;
 }
-#fh5co-header .display-tc .btn,
-#fh5co-counter .display-tc .btn,
-.fh5co-cover .display-tc .btn {
+#mac634-header .display-tc .btn,
+#mac634-counter .display-tc .btn,
+.mac634-cover .display-tc .btn {
   padding: 15px 30px;
   color: #fff;
   border: none !important;
   font-size: 18px;
 }
-#fh5co-header .display-tc .btn.btn-video,
-#fh5co-counter .display-tc .btn.btn-video,
-.fh5co-cover .display-tc .btn.btn-video {
+#mac634-header .display-tc .btn.btn-video,
+#mac634-counter .display-tc .btn.btn-video,
+.mac634-cover .display-tc .btn.btn-video {
   background: rgba(9, 198, 171, 0.8);
   border: none;
 }
-#fh5co-header .display-tc .btn.btn-video:hover, #fh5co-header .display-tc .btn.btn-video:focus,
-#fh5co-counter .display-tc .btn.btn-video:hover,
-#fh5co-counter .display-tc .btn.btn-video:focus,
-.fh5co-cover .display-tc .btn.btn-video:hover,
-.fh5co-cover .display-tc .btn.btn-video:focus {
+#mac634-header .display-tc .btn.btn-video:hover, #mac634-header .display-tc .btn.btn-video:focus,
+#mac634-counter .display-tc .btn.btn-video:hover,
+#mac634-counter .display-tc .btn.btn-video:focus,
+.mac634-cover .display-tc .btn.btn-video:hover,
+.mac634-cover .display-tc .btn.btn-video:focus {
   background: rgba(9, 198, 171, 0.9) !important;
   color: #fff !important;
 }
-#fh5co-header .display-tc .btn:hover, #fh5co-header .display-tc .btn:focus,
-#fh5co-counter .display-tc .btn:hover,
-#fh5co-counter .display-tc .btn:focus,
-.fh5co-cover .display-tc .btn:hover,
-.fh5co-cover .display-tc .btn:focus {
+#mac634-header .display-tc .btn:hover, #mac634-header .display-tc .btn:focus,
+#mac634-counter .display-tc .btn:hover,
+#mac634-counter .display-tc .btn:focus,
+.mac634-cover .display-tc .btn:hover,
+.mac634-cover .display-tc .btn:focus {
   color: #fff !important;
 }
-#fh5co-header .display-tc .btn.btn-learn,
-#fh5co-counter .display-tc .btn.btn-learn,
-.fh5co-cover .display-tc .btn.btn-learn {
+#mac634-header .display-tc .btn.btn-learn,
+#mac634-counter .display-tc .btn.btn-learn,
+.mac634-cover .display-tc .btn.btn-learn {
   background: rgba(234, 146, 21, 0.8);
   border: none;
 }
-#fh5co-header .display-tc .btn.btn-learn:hover, #fh5co-header .display-tc .btn.btn-learn:focus,
-#fh5co-counter .display-tc .btn.btn-learn:hover,
-#fh5co-counter .display-tc .btn.btn-learn:focus,
-.fh5co-cover .display-tc .btn.btn-learn:hover,
-.fh5co-cover .display-tc .btn.btn-learn:focus {
+#mac634-header .display-tc .btn.btn-learn:hover, #mac634-header .display-tc .btn.btn-learn:focus,
+#mac634-counter .display-tc .btn.btn-learn:hover,
+#mac634-counter .display-tc .btn.btn-learn:focus,
+.mac634-cover .display-tc .btn.btn-learn:hover,
+.mac634-cover .display-tc .btn.btn-learn:focus {
   background: rgba(234, 146, 21, 0.9) !important;
   color: #fff !important;
 }
-#fh5co-header .display-tc .btn:hover,
-#fh5co-counter .display-tc .btn:hover,
-.fh5co-cover .display-tc .btn:hover {
+#mac634-header .display-tc .btn:hover,
+#mac634-counter .display-tc .btn:hover,
+.mac634-cover .display-tc .btn:hover {
   background: #EA9215 !important;
   -webkit-box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75) !important;
   -moz-box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75) !important;
   box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75) !important;
 }
-#fh5co-header .display-tc .form-inline .form-group,
-#fh5co-counter .display-tc .form-inline .form-group,
-.fh5co-cover .display-tc .form-inline .form-group {
+#mac634-header .display-tc .form-inline .form-group,
+#mac634-counter .display-tc .form-inline .form-group,
+.mac634-cover .display-tc .form-inline .form-group {
   width: 100% !important;
   margin-bottom: 10px;
 }
-#fh5co-header .display-tc .form-inline .form-group .form-control,
-#fh5co-counter .display-tc .form-inline .form-group .form-control,
-.fh5co-cover .display-tc .form-inline .form-group .form-control {
+#mac634-header .display-tc .form-inline .form-group .form-control,
+#mac634-counter .display-tc .form-inline .form-group .form-control,
+.mac634-cover .display-tc .form-inline .form-group .form-control {
   width: 100%;
   background: #fff;
   border: none;
 }
 
-.fh5co-bg-section {
+.mac634-bg-section {
   background: rgba(0, 0, 0, 0.05);
 }
 
-#fh5co-explore,
-#fh5co-pricing,
-#fh5co-testimonial,
-#fh5co-started,
-#fh5co-project,
-#fh5co-blog,
-#fh5co-contact,
-#fh5co-footer {
+#mac634-explore,
+#mac634-pricing,
+#mac634-testimonial,
+#mac634-started,
+#mac634-project,
+#mac634-blog,
+#mac634-contact,
+#mac634-footer {
   padding: 7em 0;
   clear: both;
 }
 @media screen and (max-width: 768px) {
-  #fh5co-explore,
-  #fh5co-pricing,
-  #fh5co-testimonial,
-  #fh5co-started,
-  #fh5co-project,
-  #fh5co-blog,
-  #fh5co-contact,
-  #fh5co-footer {
+  #mac634-explore,
+  #mac634-pricing,
+  #mac634-testimonial,
+  #mac634-started,
+  #mac634-project,
+  #mac634-blog,
+  #mac634-contact,
+  #mac634-footer {
     padding: 3em 0;
   }
 }
 
-#fh5co-counter {
+#mac634-counter {
   padding: 3em 0;
   clear: both;
 }
 
-#fh5co-steps {
+#mac634-steps {
   clear: both;
   padding-bottom: 7em;
 }
 
-.fh5co-counters {
+.mac634-counters {
   padding: 3em 0;
   background-size: cover;
   background-attachment: fixed;
   background-position: center center;
 }
-.fh5co-counters .counter-wrap {
+.mac634-counters .counter-wrap {
   border: 1px solid red !important;
 }
-.fh5co-counters .fh5co-counter {
+.mac634-counters .mac634-counter {
   font-size: 44px;
   display: block;
   color: rgba(0, 0, 0, 0.7);
@@ -572,7 +572,7 @@ h1, h2, h3, h4, h5, h6, figure {
   font-weight: 400;
   margin-bottom: .3em;
 }
-.fh5co-counters .fh5co-counter-label {
+.mac634-counters .mac634-counter-label {
   color: rgba(0, 0, 0, 0.5);
   text-transform: uppercase;
   font-size: 14px;
@@ -581,7 +581,7 @@ h1, h2, h3, h4, h5, h6, figure {
   display: block;
 }
 
-#fh5co-explore .fh5co-explore1 {
+#mac634-explore .mac634-explore1 {
   margin-bottom: 7em;
 }
 
@@ -623,11 +623,11 @@ h1, h2, h3, h4, h5, h6, figure {
   color: #EA9215;
 }
 
-.fh5co-social-icons {
+.mac634-social-icons {
   margin: 0;
   padding: 0;
 }
-.fh5co-social-icons li {
+.mac634-social-icons li {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -636,7 +636,7 @@ h1, h2, h3, h4, h5, h6, figure {
   zoom: 1;
   *display: inline;
 }
-.fh5co-social-icons li a {
+.mac634-social-icons li a {
   display: -moz-inline-stack;
   display: inline-block;
   zoom: 1;
@@ -645,21 +645,21 @@ h1, h2, h3, h4, h5, h6, figure {
   padding-left: 10px;
   padding-right: 10px;
 }
-.fh5co-social-icons li a i {
+.mac634-social-icons li a i {
   font-size: 20px;
 }
 
-.fh5co-contact-info ul {
+.mac634-contact-info ul {
   padding: 0;
   margin: 0;
 }
-.fh5co-contact-info ul li {
+.mac634-contact-info ul li {
   padding: 0 0 0 40px;
   margin: 0 0 30px 0;
   list-style: none;
   position: relative;
 }
-.fh5co-contact-info ul li:before {
+.mac634-contact-info ul li:before {
   color: #EA9215;
   position: absolute;
   left: 0;
@@ -675,19 +675,19 @@ h1, h2, h3, h4, h5, h6, figure {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.fh5co-contact-info ul li.address:before {
+.mac634-contact-info ul li.address:before {
   font-size: 30px;
   content: "\e9d1";
 }
-.fh5co-contact-info ul li.phone:before {
+.mac634-contact-info ul li.phone:before {
   font-size: 23px;
   content: "\e9f4";
 }
-.fh5co-contact-info ul li.email:before {
+.mac634-contact-info ul li.email:before {
   font-size: 23px;
   content: "\e9da";
 }
-.fh5co-contact-info ul li.url:before {
+.mac634-contact-info ul li.url:before {
   font-size: 23px;
   content: "\e9af";
 }
@@ -696,10 +696,10 @@ h1, h2, h3, h4, h5, h6, figure {
   padding-bottom: 4em;
 }
 
-.fh5co-project {
+.mac634-project {
   margin-bottom: 30px;
 }
-.fh5co-project > a {
+.mac634-project > a {
   display: block;
   color: #000;
   position: relative;
@@ -709,13 +709,13 @@ h1, h2, h3, h4, h5, h6, figure {
   -o-transition: 0.5s;
   transition: 0.5s;
 }
-.fh5co-project > a img {
+.mac634-project > a img {
   position: relative;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
 }
-.fh5co-project > a:after {
+.mac634-project > a:after {
   opacity: 0;
   visibility: hidden;
   content: "";
@@ -734,7 +734,7 @@ h1, h2, h3, h4, h5, h6, figure {
   -o-transition: 0.5s;
   transition: 0.5s;
 }
-.fh5co-project > a h3, .fh5co-project > a span {
+.mac634-project > a h3, .mac634-project > a span {
   z-index: 12;
   position: absolute;
   right: 20px;
@@ -751,40 +751,40 @@ h1, h2, h3, h4, h5, h6, figure {
   -o-transition: 0.3s;
   transition: 0.3s;
 }
-.fh5co-project > a span {
+.mac634-project > a span {
   font-size: 14px;
   bottom: 20px;
 }
-.fh5co-project > a:hover {
+.mac634-project > a:hover {
   -webkit-box-shadow: 0px 18px 71px -10px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 18px 71px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 18px 71px -10px rgba(0, 0, 0, 0.75);
 }
-.fh5co-project > a:hover:after {
+.mac634-project > a:hover:after {
   opacity: 1;
   visibility: visible;
 }
 @media screen and (max-width: 768px) {
-  .fh5co-project > a:hover:after {
+  .mac634-project > a:hover:after {
     opacity: 0;
     visibility: hidden;
   }
 }
-.fh5co-project > a:hover h3, .fh5co-project > a:hover span {
+.mac634-project > a:hover h3, .mac634-project > a:hover span {
   opacity: 1;
   bottom: 55px;
 }
-.fh5co-project > a:hover span {
+.mac634-project > a:hover span {
   bottom: 15px;
 }
-.fh5co-project > a:hover img {
+.mac634-project > a:hover img {
   -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);
   -o-transform: scale(1.1);
   transform: scale(1.1);
 }
 @media screen and (max-width: 768px) {
-  .fh5co-project > a:hover img {
+  .mac634-project > a:hover img {
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -o-transform: scale(1);
@@ -798,24 +798,24 @@ h1, h2, h3, h4, h5, h6, figure {
   float: left;
 }
 
-.fh5co-heading {
+.mac634-heading {
   margin-bottom: 5em;
 }
-.fh5co-heading.fh5co-heading-sm {
+.mac634-heading.mac634-heading-sm {
   margin-bottom: 2em;
 }
-.fh5co-heading h2 {
+.mac634-heading h2 {
   font-size: 32px;
   margin-bottom: 20px;
   line-height: 1.5;
   color: #000;
 }
-.fh5co-heading p {
+.mac634-heading p {
   font-size: 18px;
   line-height: 1.5;
   color: #828282;
 }
-.fh5co-heading span {
+.mac634-heading span {
   display: block;
   margin-bottom: 10px;
   text-transform: uppercase;
@@ -823,34 +823,34 @@ h1, h2, h3, h4, h5, h6, figure {
   letter-spacing: 2px;
 }
 
-#fh5co-testimonial {
+#mac634-testimonial {
   background: #efefef;
 }
-#fh5co-testimonial .testimony-slide {
+#mac634-testimonial .testimony-slide {
   text-align: center;
 }
-#fh5co-testimonial .testimony-slide span {
+#mac634-testimonial .testimony-slide span {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 700;
   display: block;
 }
-#fh5co-testimonial .testimony-slide figure {
+#mac634-testimonial .testimony-slide figure {
   margin-bottom: 10px;
   display: -moz-inline-stack;
   display: inline-block;
   zoom: 1;
   *display: inline;
 }
-#fh5co-testimonial .testimony-slide figure img {
+#mac634-testimonial .testimony-slide figure img {
   width: 100px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   border-radius: 50%;
 }
-#fh5co-testimonial .testimony-slide blockquote {
+#mac634-testimonial .testimony-slide blockquote {
   border: none;
   margin: 30px auto;
   width: 70%;
@@ -858,21 +858,21 @@ h1, h2, h3, h4, h5, h6, figure {
   padding: 0;
 }
 @media screen and (max-width: 992px) {
-  #fh5co-testimonial .testimony-slide blockquote {
+  #mac634-testimonial .testimony-slide blockquote {
     width: 100%;
   }
 }
-#fh5co-testimonial .arrow-thumb {
+#mac634-testimonial .arrow-thumb {
   position: absolute;
   top: 40%;
   display: block;
   width: 100%;
 }
-#fh5co-testimonial .arrow-thumb a {
+#mac634-testimonial .arrow-thumb a {
   font-size: 32px;
   color: #dadada;
 }
-#fh5co-testimonial .arrow-thumb a:hover, #fh5co-testimonial .arrow-thumb a:focus, #fh5co-testimonial .arrow-thumb a:active {
+#mac634-testimonial .arrow-thumb a:hover, #mac634-testimonial .arrow-thumb a:focus, #mac634-testimonial .arrow-thumb a:active {
   text-decoration: none;
 }
 
@@ -977,7 +977,7 @@ h1, h2, h3, h4, h5, h6, figure {
   pointer-events: none;
 }
 
-#fh5co-started {
+#mac634-started {
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
@@ -985,7 +985,7 @@ h1, h2, h3, h4, h5, h6, figure {
   float: left;
   width: 100%;
 }
-#fh5co-started .overlay {
+#mac634-started .overlay {
   z-index: 0;
   position: absolute;
   bottom: 0;
@@ -994,14 +994,14 @@ h1, h2, h3, h4, h5, h6, figure {
   right: 0;
   background: rgba(0, 0, 0, 0.7);
 }
-#fh5co-started .fh5co-heading h2 {
+#mac634-started .mac634-heading h2 {
   color: #fff;
   margin-bottom: 20px !important;
 }
-#fh5co-started .fh5co-heading p {
+#mac634-started .mac634-heading p {
   color: rgba(255, 255, 255, 0.5);
 }
-#fh5co-started .form-control {
+#mac634-started .form-control {
   background: rgba(255, 255, 255, 0.2);
   border: none !important;
   color: #fff;
@@ -1011,24 +1011,24 @@ h1, h2, h3, h4, h5, h6, figure {
   -o-transition: 0.5s;
   transition: 0.5s;
 }
-#fh5co-started .form-control::-webkit-input-placeholder {
+#mac634-started .form-control::-webkit-input-placeholder {
   color: #fff;
 }
-#fh5co-started .form-control:-moz-placeholder {
+#mac634-started .form-control:-moz-placeholder {
   /* Firefox 18- */
   color: #fff;
 }
-#fh5co-started .form-control::-moz-placeholder {
+#mac634-started .form-control::-moz-placeholder {
   /* Firefox 19+ */
   color: #fff;
 }
-#fh5co-started .form-control:-ms-input-placeholder {
+#mac634-started .form-control:-ms-input-placeholder {
   color: #fff;
 }
-#fh5co-started .form-control:focus {
+#mac634-started .form-control:focus {
   background: rgba(255, 255, 255, 0.3);
 }
-#fh5co-started .btn {
+#mac634-started .btn {
   height: 54px;
   border: none !important;
   background: #EA9215;
@@ -1039,33 +1039,33 @@ h1, h2, h3, h4, h5, h6, figure {
   padding-left: 50px;
   padding-right: 50px;
 }
-#fh5co-started .form-inline .form-group {
+#mac634-started .form-inline .form-group {
   width: 100% !important;
   margin-bottom: 10px;
 }
-#fh5co-started .form-inline .form-group .form-control {
+#mac634-started .form-inline .form-group .form-control {
   width: 100%;
 }
 
-.fh5co-blog {
+.mac634-blog {
   margin-bottom: 60px;
 }
-.fh5co-blog > a {
+.mac634-blog > a {
   display: block;
   position: relative;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
 }
-.fh5co-blog > a img {
+.mac634-blog > a img {
   width: 100%;
 }
 @media screen and (max-width: 768px) {
-  .fh5co-blog {
+  .mac634-blog {
     width: 100%;
   }
 }
-.fh5co-blog .blog-text {
+.mac634-blog .blog-text {
   margin-bottom: 30px;
   position: relative;
   background: #fff;
@@ -1076,26 +1076,26 @@ h1, h2, h3, h4, h5, h6, figure {
   -moz-box-shadow: 0px 10px 20px -12px rgba(0, 0, 0, 0.18);
   box-shadow: 0px 10px 20px -12px rgba(0, 0, 0, 0.18);
 }
-.fh5co-blog .blog-text span {
+.mac634-blog .blog-text span {
   display: inline-block;
   margin-bottom: 20px;
 }
-.fh5co-blog .blog-text span.comment {
+.mac634-blog .blog-text span.comment {
   float: right;
 }
-.fh5co-blog .blog-text span.comment a {
+.mac634-blog .blog-text span.comment a {
   color: rgba(0, 0, 0, 0.3);
 }
-.fh5co-blog .blog-text span.comment a i {
+.mac634-blog .blog-text span.comment a i {
   color: #EA9215;
   padding-left: 7px;
 }
-.fh5co-blog .blog-text h3 {
+.mac634-blog .blog-text h3 {
   font-size: 20px;
   margin-bottom: 20px;
   line-height: 1.5;
 }
-.fh5co-blog .blog-text h3 a {
+.mac634-blog .blog-text h3 a {
   color: black;
 }
 
@@ -1180,41 +1180,41 @@ h1, h2, h3, h4, h5, h6, figure {
   color: #888f94;
 }
 
-#fh5co-footer {
+#mac634-footer {
   background: #efefef;
 }
-#fh5co-footer .fh5co-footer-links {
+#mac634-footer .mac634-footer-links {
   padding: 0;
   margin: 0;
 }
-#fh5co-footer .fh5co-footer-links li {
+#mac634-footer .mac634-footer-links li {
   padding: 0;
   margin: 0;
   list-style: none;
 }
-#fh5co-footer .fh5co-footer-links li a {
+#mac634-footer .mac634-footer-links li a {
   color: rgba(0, 0, 0, 0.5);
   text-decoration: none;
 }
-#fh5co-footer .fh5co-footer-links li a:hover {
+#mac634-footer .mac634-footer-links li a:hover {
   text-decoration: underline;
 }
-#fh5co-footer .fh5co-widget {
+#mac634-footer .mac634-widget {
   margin-bottom: 30px;
 }
 @media screen and (max-width: 768px) {
-  #fh5co-footer .fh5co-widget {
+  #mac634-footer .mac634-widget {
     text-align: left;
   }
 }
-#fh5co-footer .fh5co-widget h3 {
+#mac634-footer .mac634-widget h3 {
   margin-bottom: 15px;
   font-weight: bold;
   font-size: 15px;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
-#fh5co-footer .copyright .block {
+#mac634-footer .copyright .block {
   display: block;
 }
 
@@ -1229,7 +1229,7 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 
-#fh5co-offcanvas {
+#mac634-offcanvas {
   position: absolute;
   z-index: 1901;
   width: 270px;
@@ -1251,41 +1251,41 @@ h1, h2, h3, h4, h5, h6, figure {
   transition: 0.5s;
 }
 @media screen and (max-width: 768px) {
-  #fh5co-offcanvas {
+  #mac634-offcanvas {
     display: block;
   }
 }
-.offcanvas #fh5co-offcanvas {
+.offcanvas #mac634-offcanvas {
   -moz-transform: translateX(0px);
   -webkit-transform: translateX(0px);
   -ms-transform: translateX(0px);
   -o-transform: translateX(0px);
   transform: translateX(0px);
 }
-#fh5co-offcanvas a {
+#mac634-offcanvas a {
   color: rgba(255, 255, 255, 0.5);
 }
-#fh5co-offcanvas a:hover {
+#mac634-offcanvas a:hover {
   color: rgba(255, 255, 255, 0.8);
 }
-#fh5co-offcanvas ul {
+#mac634-offcanvas ul {
   padding: 0;
   margin: 0;
 }
-#fh5co-offcanvas ul li {
+#mac634-offcanvas ul li {
   padding: 0;
   margin: 0;
   list-style: none;
 }
-#fh5co-offcanvas ul li > ul {
+#mac634-offcanvas ul li > ul {
   padding-left: 20px;
   display: none;
 }
-#fh5co-offcanvas ul li.offcanvas-has-dropdown > a {
+#mac634-offcanvas ul li.offcanvas-has-dropdown > a {
   display: block;
   position: relative;
 }
-#fh5co-offcanvas ul li.offcanvas-has-dropdown > a:after {
+#mac634-offcanvas ul li.offcanvas-has-dropdown > a:after {
   position: absolute;
   right: 0px;
   font-family: 'icomoon';
@@ -1305,7 +1305,7 @@ h1, h2, h3, h4, h5, h6, figure {
   -o-transition: 0.5s;
   transition: 0.5s;
 }
-#fh5co-offcanvas ul li.offcanvas-has-dropdown.active a:after {
+#mac634-offcanvas ul li.offcanvas-has-dropdown.active a:after {
   -webkit-transform: rotate(-180deg);
   -moz-transform: rotate(-180deg);
   -ms-transform: rotate(-180deg);
@@ -1358,20 +1358,20 @@ h1, h2, h3, h4, h5, h6, figure {
   outline: none;
 }
 
-.fh5co-nav-toggle {
+.mac634-nav-toggle {
   width: 25px;
   height: 25px;
   cursor: pointer;
   text-decoration: none;
 }
-.fh5co-nav-toggle.active i::before, .fh5co-nav-toggle.active i::after {
+.mac634-nav-toggle.active i::before, .mac634-nav-toggle.active i::after {
   background: #444;
 }
-.fh5co-nav-toggle:hover, .fh5co-nav-toggle:focus, .fh5co-nav-toggle:active {
+.mac634-nav-toggle:hover, .mac634-nav-toggle:focus, .mac634-nav-toggle:active {
   outline: none;
   border-bottom: none !important;
 }
-.fh5co-nav-toggle i {
+.mac634-nav-toggle i {
   position: relative;
   display: inline-block;
   width: 25px;
@@ -1383,7 +1383,7 @@ h1, h2, h3, h4, h5, h6, figure {
   background: #252525;
   transition: all .2s ease-out;
 }
-.fh5co-nav-toggle i::before, .fh5co-nav-toggle i::after {
+.mac634-nav-toggle i::before, .mac634-nav-toggle i::after {
   content: '';
   width: 25px;
   height: 2px;
@@ -1392,35 +1392,35 @@ h1, h2, h3, h4, h5, h6, figure {
   left: 0;
   transition: all .2s ease-out;
 }
-.fh5co-nav-toggle.fh5co-nav-white > i {
+.mac634-nav-toggle.mac634-nav-white > i {
   color: #fff;
   background: #fff;
 }
-.fh5co-nav-toggle.fh5co-nav-white > i::before, .fh5co-nav-toggle.fh5co-nav-white > i::after {
+.mac634-nav-toggle.mac634-nav-white > i::before, .mac634-nav-toggle.mac634-nav-white > i::after {
   background: #fff;
 }
 
-.fh5co-nav-toggle i::before {
+.mac634-nav-toggle i::before {
   top: -7px;
 }
 
-.fh5co-nav-toggle i::after {
+.mac634-nav-toggle i::after {
   bottom: -7px;
 }
 
-.fh5co-nav-toggle:hover i::before {
+.mac634-nav-toggle:hover i::before {
   top: -10px;
 }
 
-.fh5co-nav-toggle:hover i::after {
+.mac634-nav-toggle:hover i::after {
   bottom: -10px;
 }
 
-.fh5co-nav-toggle.active i {
+.mac634-nav-toggle.active i {
   background: transparent;
 }
 
-.fh5co-nav-toggle.active i::before {
+.mac634-nav-toggle.active i::before {
   top: 0;
   -webkit-transform: rotateZ(45deg);
   -moz-transform: rotateZ(45deg);
@@ -1429,7 +1429,7 @@ h1, h2, h3, h4, h5, h6, figure {
   transform: rotateZ(45deg);
 }
 
-.fh5co-nav-toggle.active i::after {
+.mac634-nav-toggle.active i::after {
   bottom: 0;
   -webkit-transform: rotateZ(-45deg);
   -moz-transform: rotateZ(-45deg);
@@ -1438,7 +1438,7 @@ h1, h2, h3, h4, h5, h6, figure {
   transform: rotateZ(-45deg);
 }
 
-.fh5co-nav-toggle {
+.mac634-nav-toggle {
   position: absolute;
   right: 0px;
   top: 65px;
@@ -1453,7 +1453,7 @@ h1, h2, h3, h4, h5, h6, figure {
   border-bottom: none !important;
 }
 @media screen and (max-width: 768px) {
-  .fh5co-nav-toggle {
+  .mac634-nav-toggle {
     display: block;
   }
 }
@@ -1640,7 +1640,7 @@ h1, h2, h3, h4, h5, h6, figure {
   padding-bottom: 2em !important;
 }
 
-.fh5co-loader {
+.mac634-loader {
   position: fixed;
   left: 0px;
   top: 0px;

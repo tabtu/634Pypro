@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block background_block %}
-<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url({% static 'images/img_bg_2.jpg' %});" data-stellar-background-ratio="0.5">
+<header id="mac634-header" class="mac634-cover mac634-cover-sm" role="banner" style="background-image:url({% static 'images/img_bg_2.jpg' %});" data-stellar-background-ratio="0.5">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row">
@@ -19,6 +19,11 @@
             {% else%}
               <strong> There are no available topics!</strong>
             {% endif %}
+						<form action={% url 'myapp:addtopic'%} method='post'>
+		        {%  csrf_token %}
+		        {{ form }}
+		        	<input type="submit" value="Propose A Topic" />
+		        </form>
             </ol>
 					</div>
 				</div>

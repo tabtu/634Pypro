@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block background_block %}
-<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url({% static 'images/img_bg_2.jpg' %});" data-stellar-background-ratio="0.5">
+<header id="mac634-header" class="mac634-cover mac634-cover-sm" role="banner" style="background-image:url({% static 'images/img_bg_5.jpg' %});" data-stellar-background-ratio="0.5">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row">
@@ -10,7 +10,15 @@
 				<div class="display-t">
 					<div class="display-tc animate-box" data-animate-effect="fadeIn">
 						<h1>My Courses</h1>
-						<h2>634 Project Made by Tab <a href="http://www.ttxy.org" target="_blank">TT</a></h2>
+						{% if mycourses %}
+				    <ol>
+				    {% for course in mycourses %}
+					  	<li><a href="/myapp/course/{{ course.course_no }}" >{{ course.title }} </a></li>
+				    {% endfor %}
+				    </ol>
+				    {% else %}
+				      <strong> There are no available courses!</strong>
+				    {% endif %}
 					</div>
 				</div>
 			</div>

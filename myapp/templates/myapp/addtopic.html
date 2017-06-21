@@ -2,15 +2,14 @@
 {% load staticfiles %}
 
 {% block background_block %}
-<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url({% static 'images/img_bg_2.jpg' %});" data-stellar-background-ratio="0.5">
+<header id="mac634-header" class="mac634-cover mac634-cover-sm" role="banner" style="background-image:url({% static 'images/img_bg_2.jpg' %});" data-stellar-background-ratio="0.5">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2 text-center">
 				<div class="display-t">
 					<div class="display-tc animate-box" data-animate-effect="fadeIn">
-						<h1>Topic</h1>
-            <h2>--- add a topic:</h2>
+						<h1>Top 10 Topics:</h1>
             {% if topiclist %}
             <ol>
             {%  for topic in topiclist %}
@@ -30,18 +29,6 @@
 {% endblock %}
 
 {% block body_block %}
-    {%  if topiclist %}
-        <h2>List of topics:</h2>
-             <ol>
-            {%  for topic in topiclist %}
-                <li><a href="/myapp/topic/{{ topic.subject }}" >{{ topic.subject }} </a></li>
-            {%  endfor %}
-             </ol>
-    {% else%}
-        <strong> There are no available topics!</strong>
-    {%  endif %}
-
-
     <h2>Add a topic:</h2>
     <form class="addfield" action="." method="post">
 
@@ -54,3 +41,4 @@
     <input type="submit" value="Save" />
 </form>
 {% endblock %}
+mac634

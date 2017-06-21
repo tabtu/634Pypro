@@ -1,20 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Detail 0</title>
-</head>
-<body>
-    {% extends 'myapp/base.html' %}
-    {% block myhdg %}
-        <h1>Hello Tab!</h1>
-    {% endblock %}
+{% extends 'myapp/base.html' %}
+{% load staticfiles %}
 
-    {% block body_block %}
-        <h1>The detailed information about course: {{ courseNumber }}</h1>
-        <p>Course title: {{ cTitle }}</p>
-        <p>Course textbook: {{ cTextbook }}</p>
-    {% endblock %}
+{% block background_block %}
+<header id="mac634-header" class="mac634-cover mac634-cover-sm" role="banner" style="background-image:url({% static 'images/img_bg_2.jpg' %});" data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 text-center">
+				<div class="display-t">
+					<div class="display-tc animate-box" data-animate-effect="fadeIn">
+						<h1>{{ cTitle }}</h1>
+            <h2>course number: {{ courseNumber }}</h2>
+            <h3>textbook: {{ cTextbook }}</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+{% endblock %}
 
-</body>
-</html>
+{% block body_block %}
+<h1>The detailed information about course: {{ courseNumber }}</h1>
+<p>Course title: {{ cTitle }}</p>
+<p>Course textbook: {{ cTextbook }}</p>
+{% endblock %}

@@ -60,13 +60,13 @@
     <script src="{% static 'js/main.js' %}"></script>
   </head>
   <body>
-    <nav class="fh5co-nav" role="navigation">
+    <nav class="mac634-nav" role="navigation">
   		<div class="top">
   			<div class="container">
   				<div class="row">
   					<div class="col-xs-12 text-right">
   						<p class="num">Email: MAC634@uwindsor.ca</p>
-  						<ul class="fh5co-social">
+  						<ul class="mac634-social">
   							<li><a href="#"><i class="icon-twitter"></i></a></li>
   							<li><a href="#"><i class="icon-dribbble"></i></a></li>
   							<li><a href="#"><i class="icon-github"></i></a></li>
@@ -79,7 +79,7 @@
   			<div class="container">
   				<div class="row">
   					<div class="col-xs-1">
-  						<div id="fh5co-logo"><a href="/myapp/index">Learn<span>.</span></a></div>
+  						<div id="mac634-logo"><a href="/myapp/index">Learn<span>.</span></a></div>
   					</div>
   					<div class="col-xs-11 text-right menu-1">
   						<ul>
@@ -87,17 +87,14 @@
   							<li><a href="/myapp/course">Courses</a></li>
   							<li><a href="/myapp/topic">Topic</a></li>
   							<li class="has-dropdown">
-  								<!--<a href="/myapp/blog">Blog</a>-->
+  								<a href="#">About</a>
   								<ul class="dropdown">
-  									<li><a href="#">Web Design</a></li>
-  									<li><a href="#">eCommerce</a></li>
-  									<li><a href="#">Branding</a></li>
-  									<li><a href="#">API</a></li>
+  									<li><a href="/myapp/about">Team</a></li>
+  									<li><a href="/myapp/contact">Contact Us</a></li>
   								</ul>
   							</li>
-  							<li><a href="/myapp/contact">Contact</a></li>
                 {% if firstname %}
-                <li class="btn-cta"><a href="/myapp/users/{{username}}/"><span>{{ firstname }}</span></a></li>
+                <li class="btn-cta"><a href="/myapp/users"><span>{{ firstname }}</span></a></li>
                 <li class="btn-cta"><a href="/myapp/logout"><span>Logout</span></a></li>
                 {% else %}
                 <li class="btn-cta"><a href="/myapp/login"><span>Login</span></a></li>
@@ -119,16 +116,16 @@
       {% endblock %}
     </div>
 
-    <footer id="fh5co-footer" role="contentinfo">
+    <footer id="mac634-footer" role="contentinfo">
       <div class="container">
         <div class="row row-pb-md">
-          <div class="col-md-3 fh5co-widget">
+          <div class="col-md-3 mac634-widget">
             <h4>About Learning</h4>
             <p>MAC634 - project</p>
           </div>
           <div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
             <h4>Learning</h4>
-            <ul class="fh5co-footer-links">
+            <ul class="mac634-footer-links">
               <li><a href="#">Course</a></li>
               <li><a href="#">Blog</a></li>
               <li><a href="#">Contact</a></li>
@@ -139,7 +136,7 @@
 
           <div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
             <h4>Learn &amp; Grow</h4>
-            <ul class="fh5co-footer-links">
+            <ul class="mac634-footer-links">
               <li><a href="#">Blog</a></li>
               <li><a href="#">Privacy</a></li>
               <li><a href="#">Testimonials</a></li>
@@ -150,7 +147,7 @@
 
           <div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
             <h4>Engage us</h4>
-            <ul class="fh5co-footer-links">
+            <ul class="mac634-footer-links">
               <li><a href="#">Marketing</a></li>
               <li><a href="#">Visual Assistant</a></li>
               <li><a href="#">System Analysis</a></li>
@@ -160,7 +157,7 @@
 
           <div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
             <h4>Legal</h4>
-            <ul class="fh5co-footer-links">
+            <ul class="mac634-footer-links">
               <li><a href="#">Find Designers</a></li>
               <li><a href="#">Find Developers</a></li>
               <li><a href="#">Teams</a></li>
@@ -176,7 +173,7 @@
               <small class="block">&copy; 2017 MAC. All Rights Reserved. <a href="http://www.ttxy.org/" target="_blank" title="MAC634">MAC634</a></small>
             </p>
             <p>
-              <ul class="fh5co-social-icons">
+              <ul class="mac634-social-icons">
                 <li><a href="#"><i class="icon-twitter"></i></a></li>
                 <li><a href="#"><i class="icon-facebook"></i></a></li>
                 <li><a href="#"><i class="icon-linkedin"></i></a></li>

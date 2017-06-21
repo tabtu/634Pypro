@@ -9,70 +9,70 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 # Index page
-def index(request):
+def index(req):
     topiclist = Topic.objects.all().order_by('subject')[:10]
-    if 'username' in request.session:
-        firstname = Student.objects.get(username=request.session['username']).first_name
-        mycourses = Course.objects.filter(student__username=request.session['username'])
+    if 'username' in req.session:
+        firstname = Student.objects.get(username=req.session['username']).first_name
+        mycourses = Course.objects.filter(student__username=req.session['username'])
         return render_to_response('myapp/index.html', {'firstname': firstname, 'courselist': mycourses, 'topiclist': topiclist})
     else:
         courselist = Course.objects.all().order_by('title')[:10]
-        return render(request, 'myapp/index.html', {'courselist': courselist, 'topiclist': topiclist})
+        return render(req, 'myapp/index.html', {'courselist': courselist, 'topiclist': topiclist})
 
 # about page
 @login_required
-def about(request):
-    return render(request, 'myapp/about.html')
+def about(req):
+    return render(req, 'myapp/about.html')
 
 # course page
-def courselist(request):
-    courselist = Course.objects.all()[:10]
-    return render(request, 'myapp/course.html', {'courselist': courselist})
+def courselist(req):
+    if 'username' in req.session:
+        mycourses = Course.objects.filter(student__username=req.session['username'])
+    courselist = Course.objects.all().order_by('title')[:10]
+    return render(req, 'myapp/course.html', {'mycourses': mycourses, 'courselist': courselist})
 
 # detail page
-def coursedetail(request, course_no):
+def coursedetail(req, course_no):
     #c = Course.objects.get(course_no = course_no)
     c = get_object_or_404(Course, course_no = course_no)
     courseNumber = c.course_no
     cTitle = c.title
     cTextbook = str(c.textbook)
-    return render(request, 'myapp/coursedetail.html', {'courseNumber': courseNumber, 'cTitle': cTitle, 'cTextbook': cTextbook})
-
+    return render(req, 'myapp/coursedetail.html', {'courseNumber': courseNumber, 'cTitle': cTitle, 'cTextbook': cTextbook})
 
 # Import necessary classes and models
 # Create your views here.
-def topiclist(request):
+def topiclist(req):
     topiclist = Topic.objects.all()[:10]
-    return render(request, 'myapp/topic.html', {'topiclist': topiclist})
+    return render(req, 'myapp/topic.html', {'topiclist': topiclist})
 
-def topicdetail(request, subject):
+def topicdetail(req, subject):
     topic = Topic.objects.get(subject = subject)
-    if request.method == 'POST':
-        form = InterestForm(request.POST)
+    if req.method == 'POST':
+        form = InterestForm(req.POST)
         if form.is_valid():
-            interest = form.save(commit=False)
-            interest.num_responses = 1
-            interest.save()
-            if form.interested == 1:
-                topic.avg_age = (topic.avg_age * topic.num_responses + form.age) / (topic.num_responses + 1)
+            fage = form.cleaned_data['age']
+            if form.cleaned_data['interested'] == 1:
+                topic.avg_age = (topic.avg_age * topic.num_responses + fage) / (topic.num_responses + 1)
                 topic.num_responses += 1
             else:
-                topic.avg_age = (topic.avg_age * topic.num_responses + form.age) / (topic.num_responses)
+                topic.avg_age = (topic.avg_age * topic.num_responses + fage) / (topic.num_responses)
             topic.save()
-            return HttpResponseRedirect(reverse('myapp:topicdetail'))
+            #return HttpResponseRedirect(reverse('myapp:topicdetail'))
+            return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic})
         else:
             form = InterestForm()
-    elif request.method == 'GET':
-        form = InterestForm(request.GET)
+    elif req.method == 'GET':
+        form = InterestForm(req.GET)
     else:
         form = InterestForm()
-    return render(request, 'myapp/topicdetail.html',{'form':form, 'topic':topic})
+    return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic})
 
-
-def addtopic(request):
+# create a topic
+def addtopic(req):
     topiclist = Topic.objects.all()
-    if request.method=='POST':
-        form = TopicForm(request.POST)
+    if req.method=='POST':
+        form = TopicForm(req.POST)
         if form.is_valid():
             topic = form.save(commit=True)
             topic.num_responses=1
@@ -80,14 +80,13 @@ def addtopic(request):
             return HttpResponseRedirect(reverse('myapp:topic'))
     else:
         form = TopicForm()
-    return render(request, 'myapp/addtopic.html', {'form':form, 'topiclist': topiclist})
-
+    return render(req, 'myapp/addtopic.html', {'form':form, 'topiclist': topiclist})
 
 # allows a user to register as a Student
-def register(request):
-    if request.method == 'POST':
-        form = StudentForm(request.POST)
-        usnm = request.POST['username']
+def register(req):
+    if req.method == 'POST':
+        form = StudentForm(req.POST)
+        usnm = req.POST['username']
         if usnm.strip():
             if Student.objects.filter(username__exact=usnm):
                 return HttpResponse('username has already used, Please change another')
@@ -100,41 +99,39 @@ def register(request):
             return HttpResponse('Invalid login details.')
     else:
         form = StudentForm()
-    return render(request, 'myapp/register.html', {'form':form})
+    return render(req, 'myapp/register.html', {'form':form})
 
-
-def user_login(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+# user login method
+def user_login(req):
+    if req.method == 'POST':
+        username = req.POST['username']
+        password = req.POST['password']
         user = authenticate(username=username, password=password)
         if user:
             if user.is_active:
-                login(request, user)
-                request.session['username'] = user.username
+                login(req, user)
+                req.session['username'] = user.username
                 return HttpResponseRedirect(reverse('myapp:index'))
             else:
                 return HttpResponse('Your account is disabled.')
         else:
             return HttpResponse('Invalid login details.')
     else:
-        return render(request, 'myapp/login.html')
-
+        return render(req, 'myapp/login.html')
 
 # logout
 @login_required
-def user_logout(request):
+def user_logout(req):
     try:
-        logout(request)
-        del request.session['username']
+        logout(req)
+        del req.session['username']
     except:
         pass
     return HttpResponseRedirect(reverse(('myapp:index')))
 
+# contact page
+def contact(req):
+    return render(req, 'myapp/contact.html')
 
-def regsuc(req):
-    username = req.session.get('username')
-    return render_to_response('myapp/regsuc.html', {'username': username})
-
-def contact(request):
-    return render(request, 'myapp/contact.html')
+def changepwd(req):
+    return render(req, 'myapp/chgpwd.html')
