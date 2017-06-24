@@ -1,5 +1,5 @@
 from django import forms
-from myapp.models import Topic, Student
+from myapp.models import Topic, Student, Course
 
 class TopicForm(forms.ModelForm):
     class Meta:
@@ -7,6 +7,13 @@ class TopicForm(forms.ModelForm):
         fields = ['subject', 'intro_course', 'time', 'avg_age']
         widgets = {'time': forms.RadioSelect()}
         labels = {'time':'Preferred Time', 'avg_age':'What is your age','intro_course':'This should be an introductory level course'}
+
+class CourseForm(forms.ModelForm):
+    class Meta:
+        model = Course
+        fields = ['course_no', 'title', 'textbook']
+        widgets = {}
+        labels = {'course_no':'Course Number', 'title':'The course name','textbook':'Which book is used'}
 
 class InterestForm(forms.Form):
     interested = forms.TypedChoiceField(required=True, label='Do you interested in this topic', widget=forms.RadioSelect, coerce=int, choices=((1,'Yes'),(0,'No')))
@@ -16,9 +23,9 @@ class InterestForm(forms.Form):
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields=['username', 'password', 'first_name', 'last_name', 'address', 'city', 'province', 'age']
-        widgets={'password':forms.PasswordInput}
-        labels={'username':'Username', 'password':'Password', 'first_name':'Firstname', 'last_name':'Lastname', 'address':'Address', 'city':'City', 'province':'Province', 'age':'Age'}
+        fields = ['username', 'password', 'first_name', 'last_name', 'address', 'city', 'province', 'age']
+        widgets = {'password':forms.PasswordInput}
+        labels = {'username':'Username', 'password':'Password', 'first_name':'Firstname', 'last_name':'Lastname', 'address':'Address', 'city':'City', 'province':'Province', 'age':'Age'}
 
 class ChangePwd(forms.Form):
     password = forms.CharField()

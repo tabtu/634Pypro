@@ -1,0 +1,43 @@
+{% extends 'myapp/base.html' %}
+{% load staticfiles %}
+
+{% block background_block %}
+<header id="mac634-header" class="mac634-cover mac634-cover-sm" role="banner" style="background-image:url({% static 'images/img_bg_2.jpg' %});" data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 text-center">
+				<div class="display-t">
+					<div class="display-tc animate-box" data-animate-effect="fadeIn">
+						<h1>Top 10 Topics:</h1>
+            {% if courselist %}
+            <ol>
+            {% for course in courselist %}
+              <li><a href="/myapp/topic/{{ topic.subject }}" >{{ course.title }} </a></li>
+            {% endfor %}
+              </ol>
+            {% else%}
+              <strong> There are no available topics!</strong>
+            {% endif %}
+            </ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+{% endblock %}
+
+{% block body_block %}
+    <h2>Add a course:</h2>
+    <form class="addfield" action="." method="post">
+
+        {% csrf_token %}
+    <ol>
+        {% for f in form %}
+            {{ f.label }}:  {{ f }}<br>
+        {% endfor %}
+    </ol>
+    <input type="submit" value="Save" />
+</form>
+{% endblock %}

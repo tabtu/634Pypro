@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^users/$', views.changepwd, name = 'changepassword'),
     url(r'^mycourses/$', views.mycourses, name = 'mycourses'),
     url(r'^findcourse/$', views.courselist, name = 'findcourse'),
+    url(r'^addcourse/$', views.addcourse, name = 'addcourse'), 
 ]

@@ -33,12 +33,11 @@
     <form class="addfield" action="." method="post">
 
         {% csrf_token %}
-    <ol>
+    	<ol>
         {% for f in form %}
             {{ f.label }}:  {{ f }}<br>
         {% endfor %}
-    </ol>
-    <input type="submit" value="Save" />
-</form>
+    	</ol>
+    	<input type="submit" value="Save" />
+		</form>
 {% endblock %}
-mac634

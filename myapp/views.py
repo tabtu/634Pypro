@@ -3,14 +3,14 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from myapp.models import Author, Book, Course, Student, Topic
-from myapp.forms import InterestForm, TopicForm, LoginForm, StudentForm
+from myapp.forms import InterestForm, TopicForm, LoginForm, StudentForm, CourseForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 # Index page
 def index(req):
-    topiclist = Topic.objects.all().order_by('subject')[:10]
+    #topiclist = Topic.objects.all().order_by('subject')[:10]
     if 'username' in req.session:
         firstname = Student.objects.get(username=req.session['username']).first_name
         mycourses = Course.objects.filter(student__username=req.session['username'])
@@ -20,21 +20,30 @@ def index(req):
         return render(req, 'myapp/index.html')
 
 # about page
-@login_required
 def about(req):
-    return render(req, 'myapp/about.html')
+    if 'username' in req.session:
+        firstname = Student.objects.get(username=req.session['username']).first_name
+        mycourses = Course.objects.filter(student__username=req.session['username'])
+        return render_to_response('myapp/about.html', {'firstname': firstname})
+    else:
+        courselist = Course.objects.all().order_by('title')[:10]
+        return render(req, 'myapp/about.html')
 
 # course page
 def courselist(req):
     courselist = Course.objects.all().order_by('title')[:10]
-    return render(req, 'myapp/course.html', {'courselist': courselist})
+    if 'username' in req.session:
+        firstname = Student.objects.get(username=req.session['username']).first_name
+        return render_to_response('myapp/course.html', {'courselist': courselist, 'firstname': firstname})
+    else:
+        return render(req, 'myapp/course.html', {'courselist': courselist})
 
 @login_required
 def mycourses(req):
-    if 'username' in req.session:
-        mycourses = Course.objects.filter(student__username=req.session['username'])
     courselist = Course.objects.all().order_by('title')[:10]
-    return render(req, 'myapp/course.html', {'mycourses': mycourses, 'courselist': courselist})
+    firstname = Student.objects.get(username=req.session['username']).first_name
+    mycourses = Course.objects.filter(student__username=req.session['username'])
+    return render(req, 'myapp/course.html', {'mycourses': mycourses, 'courselist': courselist, 'firstname': firstname})
 
 # detail page
 def coursedetail(req, course_no):
@@ -43,13 +52,21 @@ def coursedetail(req, course_no):
     courseNumber = c.course_no
     cTitle = c.title
     cTextbook = str(c.textbook)
-    return render(req, 'myapp/coursedetail.html', {'courseNumber': courseNumber, 'cTitle': cTitle, 'cTextbook': cTextbook})
+    if 'username' in req.session:
+        firstname = Student.objects.get(username=req.session['username']).first_name
+        return render_to_response('myapp/coursedetail.html', {'courseNumber': courseNumber, 'cTitle': cTitle, 'cTextbook': cTextbook, 'firstname': firstname})
+    else:
+        return render(req, 'myapp/coursedetail.html', {'courseNumber': courseNumber, 'cTitle': cTitle, 'cTextbook': cTextbook})
 
 # Import necessary classes and models
 # Create your views here.
 def topiclist(req):
     topiclist = Topic.objects.all()[:10]
-    return render(req, 'myapp/topic.html', {'topiclist': topiclist})
+    if 'username' in req.session:
+        firstname = Student.objects.get(username=req.session['username']).first_name
+        return render_to_response('myapp/topic.html', {'topiclist': topiclist, 'firstname': firstname})
+    else:
+        return render(req, 'myapp/topic.html', {'topiclist': topiclist})
 
 def topicdetail(req, subject):
     topic = Topic.objects.get(subject = subject)
@@ -74,7 +91,9 @@ def topicdetail(req, subject):
     return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic})
 
 # create a topic
+@login_required
 def addtopic(req):
+    firstname = Student.objects.get(username=req.session['username']).first_name
     topiclist = Topic.objects.all()
     if req.method=='POST':
         form = TopicForm(req.POST)
@@ -85,7 +104,7 @@ def addtopic(req):
             return HttpResponseRedirect(reverse('myapp:topic'))
     else:
         form = TopicForm()
-    return render(req, 'myapp/addtopic.html', {'form':form, 'topiclist': topiclist})
+    return render(req, 'myapp/addtopic.html', {'form':form, 'topiclist': topiclist, 'firstname': firstname})
 
 # allows a user to register as a Student
 def register(req):
@@ -116,6 +135,7 @@ def user_login(req):
             if user.is_active:
                 login(req, user)
                 req.session['username'] = user.username
+                req.session['firstname'] = user.firstname
                 return HttpResponseRedirect(reverse('myapp:index'))
             else:
                 return HttpResponse('Your account is disabled.')
@@ -136,7 +156,37 @@ def user_logout(req):
 
 # contact page
 def contact(req):
-    return render(req, 'myapp/contact.html')
+    if 'username' in req.session:
+        firstname = Student.objects.get(username=req.session['username']).first_name
+        return render_to_response('myapp/contact.html', {'firstname': firstname})
+    else:
+        return render(req, 'myapp/contact.html')
 
+@login_required
 def changepwd(req):
-    return render(req, 'myapp/chgpwd.html')
+    firstname = Student.objects.get(username=req.session['username']).first_name
+    if req.method=='POST':
+        form = StudentForm(req.POST)
+        if form.is_valid():
+            student = form.save(commit=True)
+            student.num_responses=1
+            student.save()
+            return HttpResponseRedirect(reverse('myapp:logout'))
+    else:
+        form = StudentForm()
+    return render(req, 'myapp/chgpwd.html', {'firstname': firstname})
+
+@login_required
+def addcourse(req):
+    firstname = Student.objects.get(username=req.session['username']).first_name
+    courselist = Course.objects.all()
+    if req.method=='POST':
+        form = CourseForm(req.POST)
+        if form.is_valid():
+            course = form.save(commit=True)
+            course.num_responses=1
+            course.save()
+            return HttpResponseRedirect(reverse('myapp:course'))
+    else:
+        form = CourseForm()
+    return render(req, 'myapp/addcourse.html', {'form':form, 'courselist': courselist, 'firstname': firstname})
