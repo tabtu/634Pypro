@@ -2,8 +2,8 @@ from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
-from myapp.models import Author, Book, Course, Student, Topic
-from myapp.forms import InterestForm, TopicForm, LoginForm, StudentForm, CourseForm
+from myapp.models import Author, Book, Course, Student, Topic, User
+from myapp.forms import InterestForm, TopicForm, LoginForm, StudentForm, CourseForm, ChangePwd
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -12,8 +12,7 @@ from django.contrib.auth.decorators import login_required
 def index(req):
     #topiclist = Topic.objects.all().order_by('subject')[:10]
     if 'username' in req.session:
-        firstname = Student.objects.get(username=req.session['username']).first_name
-        mycourses = Course.objects.filter(student__username=req.session['username'])
+        firstname = User.objects.get(username=req.session['username']).first_name
         return render_to_response('myapp/index.html', {'firstname': firstname})
     else:
         courselist = Course.objects.all().order_by('title')[:10]
@@ -22,8 +21,7 @@ def index(req):
 # about page
 def about(req):
     if 'username' in req.session:
-        firstname = Student.objects.get(username=req.session['username']).first_name
-        mycourses = Course.objects.filter(student__username=req.session['username'])
+        firstname = User.objects.get(username=req.session['username']).first_name
         return render_to_response('myapp/about.html', {'firstname': firstname})
     else:
         courselist = Course.objects.all().order_by('title')[:10]
@@ -33,17 +31,19 @@ def about(req):
 def courselist(req):
     courselist = Course.objects.all().order_by('title')[:10]
     if 'username' in req.session:
-        firstname = Student.objects.get(username=req.session['username']).first_name
-        return render_to_response('myapp/course.html', {'courselist': courselist, 'firstname': firstname})
+        firstname = User.objects.get(username=req.session['username']).first_name
+        return render(req, 'myapp/course.html', {'courselist': courselist, 'firstname': firstname})
     else:
         return render(req, 'myapp/course.html', {'courselist': courselist})
 
 @login_required
 def mycourses(req):
-    courselist = Course.objects.all().order_by('title')[:10]
-    firstname = Student.objects.get(username=req.session['username']).first_name
-    mycourses = Course.objects.filter(student__username=req.session['username'])
-    return render(req, 'myapp/course.html', {'mycourses': mycourses, 'courselist': courselist, 'firstname': firstname})
+    firstname = User.objects.get(username=req.session['username']).first_name
+    if Student.objects.filter(username=req.session['username']):
+        mycourses = Course.objects.filter(student__username=req.session['username'])
+        return render(req, 'myapp/mycourses.html', {'isstudent': True, 'mycourses': mycourses, 'firstname': firstname})
+    else:
+        return render(req, 'myapp/mycourses.html', {'isstudent': False, 'firstname': firstname})
 
 # detail page
 def coursedetail(req, course_no):
@@ -53,7 +53,7 @@ def coursedetail(req, course_no):
     cTitle = c.title
     cTextbook = str(c.textbook)
     if 'username' in req.session:
-        firstname = Student.objects.get(username=req.session['username']).first_name
+        firstname = User.objects.get(username=req.session['username']).first_name
         return render_to_response('myapp/coursedetail.html', {'courseNumber': courseNumber, 'cTitle': cTitle, 'cTextbook': cTextbook, 'firstname': firstname})
     else:
         return render(req, 'myapp/coursedetail.html', {'courseNumber': courseNumber, 'cTitle': cTitle, 'cTextbook': cTextbook})
@@ -63,8 +63,8 @@ def coursedetail(req, course_no):
 def topiclist(req):
     topiclist = Topic.objects.all()[:10]
     if 'username' in req.session:
-        firstname = Student.objects.get(username=req.session['username']).first_name
-        return render_to_response('myapp/topic.html', {'topiclist': topiclist, 'firstname': firstname})
+        firstname = User.objects.get(username=req.session['username']).first_name
+        return render(req, 'myapp/topic.html', {'topiclist': topiclist, 'firstname': firstname})
     else:
         return render(req, 'myapp/topic.html', {'topiclist': topiclist})
 
@@ -93,7 +93,7 @@ def topicdetail(req, subject):
 # create a topic
 @login_required
 def addtopic(req):
-    firstname = Student.objects.get(username=req.session['username']).first_name
+    firstname = User.objects.get(username=req.session['username']).first_name
     topiclist = Topic.objects.all()
     if req.method=='POST':
         form = TopicForm(req.POST)
@@ -135,7 +135,7 @@ def user_login(req):
             if user.is_active:
                 login(req, user)
                 req.session['username'] = user.username
-                req.session['firstname'] = user.firstname
+                req.session['firstname'] = user.first_name
                 return HttpResponseRedirect(reverse('myapp:index'))
             else:
                 return HttpResponse('Your account is disabled.')
@@ -157,29 +157,32 @@ def user_logout(req):
 # contact page
 def contact(req):
     if 'username' in req.session:
-        firstname = Student.objects.get(username=req.session['username']).first_name
+        firstname = User.objects.get(username=req.session['username']).first_name
         return render_to_response('myapp/contact.html', {'firstname': firstname})
     else:
         return render(req, 'myapp/contact.html')
 
 @login_required
 def changepwd(req):
-    firstname = Student.objects.get(username=req.session['username']).first_name
+    stu = Student.objects.get(username=req.session['username'])
+    firstname = stu.first_name
     if req.method=='POST':
-        form = StudentForm(req.POST)
+        form = ChangePwd(req.POST)
         if form.is_valid():
-            student = form.save(commit=True)
-            student.num_responses=1
-            student.save()
-            return HttpResponseRedirect(reverse('myapp:logout'))
+            if form.cleaned_data['password'] == stu.password:
+                stu.password = form.cleaned_data['newpassword']
+                student.save()
+                return HttpResponseRedirect(reverse('myapp:logout'))
+            else:
+                return HttpResponseRedirect(reverse('myapp:chgpwd'))
     else:
-        form = StudentForm()
-    return render(req, 'myapp/chgpwd.html', {'firstname': firstname})
+        form = ChangePwd()
+    return render(req, 'myapp/chgpwd.html', {'form':form, 'firstname': firstname})
 
 @login_required
 def addcourse(req):
-    firstname = Student.objects.get(username=req.session['username']).first_name
-    courselist = Course.objects.all()
+    firstname = User.objects.get(username=req.session['username']).first_name
+    courselist = Course.objects.all()[:10]
     if req.method=='POST':
         form = CourseForm(req.POST)
         if form.is_valid():

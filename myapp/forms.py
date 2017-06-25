@@ -28,8 +28,8 @@ class StudentForm(forms.ModelForm):
         labels = {'username':'Username', 'password':'Password', 'first_name':'Firstname', 'last_name':'Lastname', 'address':'Address', 'city':'City', 'province':'Province', 'age':'Age'}
 
 class ChangePwd(forms.Form):
-    password = forms.CharField()
-    newpassword = forms.CharField()
+    password = forms.PasswordInput()
+    newpassword = forms.PasswordInput()
 
 class LoginForm(forms.Form):
     username = forms.CharField(

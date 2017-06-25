@@ -2,14 +2,24 @@
 {% load staticfiles %}
 
 {% block background_block %}
-<header >
-
+<header id="mac634-header" class="mac634-cover mac634-cover-sm" role="banner" style="background-image:url({% static 'images/img_bg_4.jpg' %});" data-stellar-background-ratio="0.5">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 text-center">
+				<div class="display-t">
+					<div class="display-tc animate-box" data-animate-effect="fadeIn">
+            <h2>Register</h2>
+            <h2>|</h2><h2>|</h2><h2>V</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </header>
 {% endblock %}
 
 {% block body_block %}
 
-    <h2>Register</h2>
     <form action="." method = 'post' enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}

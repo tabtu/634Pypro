@@ -9,7 +9,7 @@
 			<div class="col-md-8 col-md-offset-2 text-center">
 				<div class="display-t">
 					<div class="display-tc animate-box" data-animate-effect="fadeIn">
-						<h1>Top 10 Topics:</h1>
+						<h1>Top 10 Courses:</h1>
             {% if courselist %}
             <ol>
             {% for course in courselist %}
@@ -29,7 +29,8 @@
 {% endblock %}
 
 {% block body_block %}
-    <h2>Add a course:</h2>
+<h2>Add A Course</h2>
+<h2>|</h2>
     <form class="addfield" action="." method="post">
 
         {% csrf_token %}
