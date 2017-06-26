@@ -6,6 +6,10 @@ from  .models import Author, Book, Course, Student, Topic
 class CourseInline(admin.TabularInline):
      model = Course
 
+class StudentCourseInline(admin.StackedInline):
+     model = Student.student.through
+     extra = 5
+
 def make_in_stock(modeladmin, request, queryset):
     queryset.update(in_stock=True)
 make_in_stock.short_description = "Mark selected book(s) as in stock"
@@ -16,7 +20,7 @@ make_not_in_stock.short_description = "Mark selected book(s) as out of stock"
 
 class BookAdmin(admin.ModelAdmin):
     inlines=[
-        CourseInline,
+        StudentCourseInline,
     ]
     list_display=('title','author','numpages','in_stock','colored_title')
     list_display_links = ('title','author')
@@ -29,6 +33,10 @@ class BookAdmin(admin.ModelAdmin):
 
 
 class StudentAdmin(admin.ModelAdmin):
+    inlines = [
+        CoursesInline,
+    ]
+
     list_display = ('first_name', 'last_name', 'get_courses')
     list_display_links = ('first_name','last_name')
     search_fields = ('first_name','last_name')
