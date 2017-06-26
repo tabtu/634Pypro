@@ -20,7 +20,7 @@ make_not_in_stock.short_description = "Mark selected book(s) as out of stock"
 
 class BookAdmin(admin.ModelAdmin):
     inlines=[
-        StudentCourseInline,
+        CourseInline,
     ]
     list_display=('title','author','numpages','in_stock','colored_title')
     list_display_links = ('title','author')
@@ -34,7 +34,7 @@ class BookAdmin(admin.ModelAdmin):
 
 class StudentAdmin(admin.ModelAdmin):
     inlines = [
-        CoursesInline,
+        StudentCourseInline,
     ]
 
     list_display = ('first_name', 'last_name', 'get_courses')
