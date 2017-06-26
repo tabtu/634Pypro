@@ -1,8 +1,12 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.html import format_html
 from django import forms
 
 # the field of Author
+
+
+
 class Author(models.Model):
     CITY_CHOICE = (
         (' ', '---'),
@@ -27,14 +31,23 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+    def colored_title(self):
+        return format_html(
+            '<span style="color: #2894FF;">{} </span><span style="color: #9F35FF;">{} </span>',
+            self.title,
+            self.author,
+        )
+    colored_title.short_description ='COLORED TITLE AND AUTHOR'
+    colored_title.admin_order_field = 'title'
+
 # the field of Course
 class Course(models.Model):
     course_no = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=100)
     textbook = models.ForeignKey(Book)
     def __str__(self):
-        #return self.title
         return self.title
+
 
 # Student in User
 class Student(User):
@@ -49,8 +62,21 @@ class Student(User):
     province = models.CharField(max_length=2, choices=PROVINCE_CHOICES, default='ON')
     age = models.IntegerField()
     student = models.ManyToManyField(Course)
+
     def __str__(self):
         return self.username + ' --- ' + self.first_name + ' ' + self.last_name
+
+    def get_courses(self):
+        courses=self.student.all()
+        t=''
+        for c in courses:
+            t=' '+t+str(c.course_no)+': '+c.title+'. '
+        return format_html(
+            '<span style="color: #9F35FF;">{} </span>',
+            t,
+        )
+    get_courses.short_description = 'Courses Registered In'
+
     class Meta:
         verbose_name = "Student"
         verbose_name_plural = "Students"
