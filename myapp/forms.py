@@ -1,5 +1,5 @@
 from django import forms
-from myapp.models import Topic, Student, Course
+from myapp.models import Topic, Student, Course, Book
 
 class TopicForm(forms.ModelForm):
     class Meta:
@@ -14,6 +14,14 @@ class CourseForm(forms.ModelForm):
         fields = ['course_no', 'title', 'textbook']
         widgets = {}
         labels = {'course_no':'Course Number', 'title':'The course name','textbook':'Which book is used'}
+
+class BookForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = ['title', 'author', 'in_stock', 'numpages']
+        widgets = {'in_stock': forms.RadioSelect()}
+        labels = {'title':'Book Name', 'author':'Author Name','in_stock':'Is in stock', 'numpages':'Number of Pages'}
+
 
 class InterestForm(forms.Form):
     interested = forms.TypedChoiceField(required=True, label='Do you interested in this topic', widget=forms.RadioSelect, coerce=int, choices=((1,'Yes'),(0,'No')))

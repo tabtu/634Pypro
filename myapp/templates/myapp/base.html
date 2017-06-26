@@ -87,7 +87,9 @@
                 <li class="has-dropdown">
                   <a href="#">Course</a>
                   <ul class="dropdown">
+                    {% if firstname %}
                     <li><a href="/myapp/mycourses">My Courses</a></li>
+                    {% endif %}
                     <li><a href="/myapp/findcourse">Search</a></li>
                   </ul>
   							<li><a href="/myapp/topic">Topic</a></li>
