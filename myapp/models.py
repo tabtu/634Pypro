@@ -1,9 +1,14 @@
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+
 from django.db import models
 from django.utils.html import format_html
 from django import forms
 
 # the field of Author
+
+
+
 class Author(models.Model):
     CITY_CHOICE = (
         (' ', '---'),
@@ -20,11 +25,15 @@ class Author(models.Model):
         return self.firstname + ' ' + self.lastname
 
 # the field of Book
+def validate_num(value):
+    if value < 50 or value > 1000:
+        raise ValidationError('Numpages should between 50 and 1000')
+
 class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(Author)
     in_stock = models.BooleanField(default=True)
-    numpages = models.IntegerField(default=0)
+    numpages = models.IntegerField(default=0,null=False,validators=[validate_num],)
     def __str__(self):
         return self.title
 
@@ -44,6 +53,7 @@ class Course(models.Model):
     textbook = models.ForeignKey(Book)
     def __str__(self):
         return self.title
+
 
 # Student in User
 class Student(User):
@@ -77,7 +87,6 @@ class Student(User):
         verbose_name = "Student"
         verbose_name_plural = "Students"
 
-# the field of Topic
 class Topic(models.Model):
     subject = models.CharField(max_length=100, unique=True)
     intro_course = models.BooleanField(default=True)
