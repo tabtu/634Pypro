@@ -4,9 +4,6 @@ from django.utils.html import format_html
 from django import forms
 
 # the field of Author
-
-
-
 class Author(models.Model):
     CITY_CHOICE = (
         (' ', '---'),
@@ -48,7 +45,6 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
-
 # Student in User
 class Student(User):
     PROVINCE_CHOICES = (
@@ -81,6 +77,7 @@ class Student(User):
         verbose_name = "Student"
         verbose_name_plural = "Students"
 
+# the field of Topic
 class Topic(models.Model):
     subject = models.CharField(max_length=100, unique=True)
     intro_course = models.BooleanField(default=True)

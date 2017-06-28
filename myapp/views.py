@@ -48,6 +48,7 @@ def mycourses(req):
 # detail page
 def coursedetail(req, course_no):
     #c = Course.objects.get(course_no = course_no)
+    st = Student.objects.filter(first_name='Wang')
     c = get_object_or_404(Course, course_no = course_no)
     courseNumber = c.course_no
     cTitle = c.title
@@ -115,9 +116,13 @@ def register(req):
             if Student.objects.filter(username__exact=usnm):
                 return HttpResponse('username has already used, Please change another')
             if form.is_valid():
+                #user = User.objects.create_user(form.cleaned_data['username'], '', form.cleaned_data['password'])
                 usr = form.save(commit=True)
                 usr.num_responses=1
                 usr.save()
+                u = User.objects.get(username__exact=usnm)
+                u.set_password(form.cleaned_data['password'])
+                u.save()
             return HttpResponseRedirect(reverse('myapp:login'))
         else:
             return HttpResponse('Invalid login details.')
