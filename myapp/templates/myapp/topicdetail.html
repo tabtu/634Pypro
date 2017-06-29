@@ -27,13 +27,13 @@
 
 {% block body_block %}
     {% if topic %}
-        <h2>Topic</h2>
-        <ol>
+        <div align="center"><h2>Topic</h2></div>
+        <div align="center">
                 <p> Subject:{{ topic.subject }}</p>
                 <p> The number of people interested in:{{ topic.num_responses}} </p>
                 <p> Introductory : {{ topic.intro_course }}</p>
                 <p> Average age: {{ topic.avg_age }}</p>
-        </ol>
+        </div>
         <form action="." method="POST" align="center">
           <br>Interest Feedback:<br>
             {% csrf_token %}

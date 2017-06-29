@@ -29,8 +29,8 @@
 {% endblock %}
 
 {% block body_block %}
+<div align="center">
 <h2>Add A Topic</h2>
-<h2>|</h2>
     <form class="addfield" action="." method="post" align="center">
 
         {% csrf_token %}
@@ -41,4 +41,5 @@
     	</ol>
     	<input type="submit" value="Save" />
 		</form>
+</div>
 {% endblock %}
