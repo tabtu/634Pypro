@@ -8,6 +8,8 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
 
 # Index page
 def index(req):
@@ -92,9 +94,15 @@ def topicdetail(req, subject):
         form = InterestForm()
     return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic})
 
-def sendEmail(request):
-    send_mail('subject', 'content', 'tabtu@ttxy.org', ['joe@ttxy.org'], fail_silently=True)
-    return HttpResponseRedirect(reverse('myapp:index'))
+# send email for test
+def sendemail(request):
+    subject,form_email,to = 'subject','tabtu@ttxy.org','tabtu@qq.com'
+    text_content = 'This is an important message'
+    html_content = u'<b>htmlcontent:link</b><a href="http://www.ttxy.org">TTXY</a>'
+    msg = EmailMultiAlternatives(subject,text_content,form_email,[to])
+    msg.attach_alternative(html_content, 'text/html')
+    msg.send()
+    return HttpResponse(u'Send Email Successfully')
 
 # create a topic
 @login_required
