@@ -197,18 +197,9 @@ def changepwd(req):
     if req.method=='POST':
         form = ChangePwd(req.POST)
         if form.is_valid():
-<<<<<<< HEAD
             newpasswd = form.cleaned_data['password']
             stu.set_password(newpasswd)
             stu.save()
-=======
-            if form.cleaned_data['password'] == stu.password:
-                stu.password = form.cleaned_data['newpassword']
-                stu.save()
-                return HttpResponseRedirect(reverse('myapp:logout'))
-            else:
-                return HttpResponseRedirect(reverse('myapp:chgpwd'))
->>>>>>> 3d09a419451a175807c34c48edccb09b6b1e77ac
     else:
         form = ChangePwd()
     return render(req, 'myapp/chgpwd.html', {'form':form, 'firstname': firstname})
