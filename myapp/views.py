@@ -13,7 +13,6 @@ from django.core.mail import EmailMultiAlternatives
 
 # Index page
 def index(req):
-    #topiclist = Topic.objects.all().order_by('subject')[:10]
     if 'username' in req.session:
         firstname = User.objects.get(username=req.session['username']).first_name
         return render_to_response('myapp/index.html', {'firstname': firstname})
@@ -66,6 +65,7 @@ def coursedetail(req, course_no):
 # Create your views here.
 def topiclist(req):
     topiclist = Topic.objects.all()[:10]
+    
     if 'username' in req.session:
         firstname = User.objects.get(username=req.session['username']).first_name
         return render(req, 'myapp/topic.html', {'topiclist': topiclist, 'firstname': firstname})
@@ -74,6 +74,7 @@ def topiclist(req):
 
 def topicdetail(req, subject):
     topic = Topic.objects.get(subject = subject)
+
     if req.method == 'POST':
         form = InterestForm(req.POST)
         if form.is_valid():
@@ -84,15 +85,23 @@ def topicdetail(req, subject):
             else:
                 topic.avg_age = (topic.avg_age * topic.num_responses + fage) / (topic.num_responses)
             topic.save()
-            #return HttpResponseRedirect(reverse('myapp:topicdetail'))
-            return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic})
+            if 'username' in req.session:
+                firstname = User.objects.get(username=req.session['username']).first_name
+                return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic, 'firstname': firstname})
+            else:
+                return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic})
         else:
             form = InterestForm()
     elif req.method == 'GET':
         form = InterestForm(req.GET)
     else:
         form = InterestForm()
-    return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic})
+
+    if 'username' in req.session:
+        firstname = User.objects.get(username=req.session['username']).first_name
+        return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic, 'firstname': firstname})
+    else:
+        return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic})
 
 # send email for test
 def sendemail(request):

@@ -34,7 +34,7 @@
                 <p> Introductory : {{ topic.intro_course }}</p>
                 <p> Average age: {{ topic.avg_age }}</p>
         </ol>
-        <form action="." method="POST">
+        <form action="." method="POST" align="center">
           <br>Interest Feedback:<br>
             {% csrf_token %}
             {{ form.as_p }}
