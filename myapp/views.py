@@ -189,7 +189,7 @@ def changepwd(req):
         if form.is_valid():
             if form.cleaned_data['password'] == stu.password:
                 stu.password = form.cleaned_data['newpassword']
-                student.save()
+                stu.save()
                 return HttpResponseRedirect(reverse('myapp:logout'))
             else:
                 return HttpResponseRedirect(reverse('myapp:chgpwd'))
