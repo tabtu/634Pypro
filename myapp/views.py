@@ -153,7 +153,7 @@ def register(req):
     if req.method == 'POST':
         form = StudentForm(req.POST)
         usnm = req.POST['username']
-        photo = req.FILES['photo']
+        # photo = req.FILES['photo']
         if usnm.strip():
             if Student.objects.filter(username__exact=usnm):
                 return HttpResponse('username has already used, Please change another')
@@ -165,14 +165,14 @@ def register(req):
                 u = User.objects.get(username__exact=usnm)
                 u.set_password(form.cleaned_data['password'])
                 u.save()
-                '''
-                phototime = request.user.username + str(time.time()).split('.')[0]
-                photo_last = str(photo).split('.')[-1]
-                photoname = 'photos/%s.%s'%(phototime, photo_last)
-                img = Image.open(photo)
-                img.save('media/' + photoname)
-                count=UserInfo.objects.filter(user=request.user).update(photo=photoname)
-                '''
+                # '''
+                # phototime = request.user.username + str(time.time()).split('.')[0]
+                # photo_last = str(photo).split('.')[-1]
+                # photoname = 'photos/%s.%s'%(phototime, photo_last)
+                # img = Image.open(photo)
+                # img.save('media/' + photoname)
+                # count=UserInfo.objects.filter(user=request.user).update(photo=photoname)
+                # '''
             return HttpResponseRedirect(reverse('myapp:login'))
         else:
             return HttpResponse('Invalid login details.')
