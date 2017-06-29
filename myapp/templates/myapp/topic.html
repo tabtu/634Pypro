@@ -20,9 +20,9 @@
               <strong> There are no available topics!</strong>
             {% endif %}
 						<form action={% url 'myapp:addtopic'%} method='post'>
-		        {%  csrf_token %}
-		        {{ form }}
-		        	<input type="submit" value="Propose A Topic" />
+		              {%  csrf_token %}
+		              {{ form }}
+		              <input type="submit" value="Propose A Topic" />
 		        </form>
             </ol>
 					</div>
@@ -34,19 +34,6 @@
 {% endblock %}
 
 {% block body_block %}
-    {% if topiclist %}
-        <h2>List of topics:</h2>
-             <ol>
-            {% for topic in topiclist %}
-                  <li><a href="/myapp/topic/{{ topic.subject }}" >{{ topic.subject }} </a></li>
-            {% endfor %}
-             </ol>
-    {% else%}
-        <strong> There are no available topics!</strong>
-    {%  endif %}
-        <form action={% url 'myapp:addtopic'%} method='post'>
-              {%  csrf_token %}
-              {{ form }}
-              <input type="submit" value="Propose A Topic" />
-        </form>
+    
+
 {% endblock %}

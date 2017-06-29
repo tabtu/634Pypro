@@ -19,11 +19,8 @@
 						{% else %}
 							<strong> There are no available courses!</strong>
 						{% endif %}
-						<form action={% url 'myapp:addcourse'%} method='post'>
-		        {%  csrf_token %}
-		        {{ form }}
-		        	<input type="submit" value="Propose A Course" />
-		        </form>
+						<input type="text" /><input type="button" value="Search"/>
+						
 					</div>
 				</div>
 			</div>

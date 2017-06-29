@@ -3,7 +3,7 @@
 
 <html>
   <head>
-    <title>Learning Courses System by MAC team</title>
+    <title>Learning Courses System by MAC 634 team</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +29,7 @@
     <!-- Magnific Popup -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}" />
     <!-- Owl Carousel  -->
-    <link rel="stylesheet" type="text/css" href="{% static 'myapp/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.min.css' %}" />
     <!-- Theme style  -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
@@ -65,7 +65,7 @@
   			<div class="container">
   				<div class="row">
   					<div class="col-xs-12 text-right">
-  						<p class="num">Email: MAC634@uwindsor.ca</p>
+  						<p class="num">Email: MAC@uwindsor.ca</p>
   						<ul class="mac634-social">
   							<li><a href="#"><i class="icon-twitter"></i></a></li>
   							<li><a href="#"><i class="icon-dribbble"></i></a></li>
@@ -89,9 +89,11 @@
                   <ul class="dropdown">
                     {% if firstname %}
                     <li><a href="/myapp/mycourses">My Courses</a></li>
+                    <li><a href="/myapp/addcourse">Propose A Course</a></li>
                     {% endif %}
                     <li><a href="/myapp/findcourse">Search</a></li>
                   </ul>
+                </li>
   							<li><a href="/myapp/topic">Topic</a></li>
   							<li class="has-dropdown">
   								<a href="#">About</a>

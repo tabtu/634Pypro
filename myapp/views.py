@@ -8,10 +8,12 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
 
 # Index page
 def index(req):
-    #topiclist = Topic.objects.all().order_by('subject')[:10]
     if 'username' in req.session:
         firstname = User.objects.get(username=req.session['username']).first_name
         return render_to_response('myapp/index.html', {'firstname': firstname})
@@ -49,6 +51,7 @@ def mycourses(req):
 # detail page
 def coursedetail(req, course_no):
     #c = Course.objects.get(course_no = course_no)
+    st = Student.objects.filter(first_name='Wang')
     c = get_object_or_404(Course, course_no = course_no)
     courseNumber = c.course_no
     cTitle = c.title
@@ -63,6 +66,7 @@ def coursedetail(req, course_no):
 # Create your views here.
 def topiclist(req):
     topiclist = Topic.objects.all()[:10]
+    
     if 'username' in req.session:
         firstname = User.objects.get(username=req.session['username']).first_name
         return render(req, 'myapp/topic.html', {'topiclist': topiclist, 'firstname': firstname})
@@ -71,6 +75,7 @@ def topiclist(req):
 
 def topicdetail(req, subject):
     topic = Topic.objects.get(subject = subject)
+
     if req.method == 'POST':
         form = InterestForm(req.POST)
         if form.is_valid():
@@ -81,15 +86,33 @@ def topicdetail(req, subject):
             else:
                 topic.avg_age = (topic.avg_age * topic.num_responses + fage) / (topic.num_responses)
             topic.save()
-            #return HttpResponseRedirect(reverse('myapp:topicdetail'))
-            return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic})
+            if 'username' in req.session:
+                firstname = User.objects.get(username=req.session['username']).first_name
+                return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic, 'firstname': firstname})
+            else:
+                return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic})
         else:
             form = InterestForm()
     elif req.method == 'GET':
         form = InterestForm(req.GET)
     else:
         form = InterestForm()
-    return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic})
+
+    if 'username' in req.session:
+        firstname = User.objects.get(username=req.session['username']).first_name
+        return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic, 'firstname': firstname})
+    else:
+        return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic})
+
+# send email for test
+def sendemail(request):
+    subject,form_email,to = 'subject','tabtu@ttxy.org','tabtu@qq.com'
+    text_content = 'This is an important message'
+    html_content = u'<b>htmlcontent:link</b><a href="http://www.ttxy.org">TTXY</a>'
+    msg = EmailMultiAlternatives(subject,text_content,form_email,[to])
+    msg.attach_alternative(html_content, 'text/html')
+    msg.send()
+    return HttpResponse(u'Send Email Successfully')
 
 # create a topic
 @login_required
@@ -116,9 +139,13 @@ def register(req):
             if Student.objects.filter(username__exact=usnm):
                 return HttpResponse('username has already used, Please change another')
             if form.is_valid():
+                #user = User.objects.create_user(form.cleaned_data['username'], '', form.cleaned_data['password'])
                 usr = form.save(commit=True)
                 usr.num_responses=1
                 usr.save()
+                u = User.objects.get(username__exact=usnm)
+                u.set_password(form.cleaned_data['password'])
+                u.save()
             return HttpResponseRedirect(reverse('myapp:login'))
         else:
             return HttpResponse('Invalid login details.')
@@ -170,9 +197,18 @@ def changepwd(req):
     if req.method=='POST':
         form = ChangePwd(req.POST)
         if form.is_valid():
+<<<<<<< HEAD
             newpasswd = form.cleaned_data['password']
             stu.set_password(newpasswd)
             stu.save()
+=======
+            if form.cleaned_data['password'] == stu.password:
+                stu.password = form.cleaned_data['newpassword']
+                stu.save()
+                return HttpResponseRedirect(reverse('myapp:logout'))
+            else:
+                return HttpResponseRedirect(reverse('myapp:chgpwd'))
+>>>>>>> 3d09a419451a175807c34c48edccb09b6b1e77ac
     else:
         form = ChangePwd()
     return render(req, 'myapp/chgpwd.html', {'form':form, 'firstname': firstname})

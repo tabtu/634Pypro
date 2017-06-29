@@ -125,3 +125,14 @@ STATIC_URL = '/static/'
 LOGIN_URL = '/myapp/login/'
 
 LOGIN_REDIRECT_URL = '/myapp/login/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'tabtu@ttxy.org'
+EMAIL_HOST_PASSWORD = 'cborwzjyurfebiii'
+EMAIL_SUBJECT_PREFIX = u'[ttxy.org]'
+EMAIL_USE_TLS = True
+# admin email
+SERVER_EMAIL = 'tabtu@ttxy.org'
