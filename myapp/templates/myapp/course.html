@@ -20,7 +20,11 @@
 							<strong> There are no available courses!</strong>
 						{% endif %}
 						<input type="text" /><input type="button" value="Search"/>
-						
+						<form action={% url 'myapp:addcourse'%} method='post'>
+		        	{% csrf_token %}
+		        	{{ form }}
+		        	<input type="submit" value="Propose A Course" />
+		        </form>
 					</div>
 				</div>
 			</div>
@@ -34,7 +38,7 @@
             <ol>
            {% for course in courselist %}
                <li><a href="/myapp/course/{{ course.course_no }}" >{{ course.title }} </a></li>
-           {%  endfor %}
+           {% endfor %}
             </ol>
    {% else %}
        <strong> There are no available courses!</strong>
