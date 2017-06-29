@@ -3,6 +3,9 @@ from django.contrib import admin
 from  .models import Author, Book, Course, Student, Topic
 # Register your models here.
 
+class BookInline(admin.TabularInline):
+    model= Book
+
 class CourseInline(admin.TabularInline):
      model = Course
 
@@ -45,11 +48,55 @@ class StudentAdmin(admin.ModelAdmin):
     view_on_site = True
     ordering = ['first_name', 'last_name']
 
+class AuthorAdmin(admin.ModelAdmin):
+    inlines = [
+        BookInline,
+    ]
 
-admin.site.register(Author)
+    list_display = ('firstname', 'lastname', 'birthdate','city')
+    list_display_links = ('firstname','lastname')
+    search_fields = ('firstname','lastname')
+    fields = ('firstname', 'lastname', 'birthdate','city')
+    list_filter = ('birthdate','city')
+    view_on_site = True
+    ordering = ['firstname', 'lastname']
+
+class CourseAdmin(admin.ModelAdmin):
+    inlines = [
+        StudentCourseInline,
+    ]
+
+    list_display = ('course_no','title', 'textbook')
+    list_display_links = ('course_no',)
+    search_fields = ('course_no',)
+    fields = ('course_no', 'title', 'textbook')
+    list_filter = ('textbook',)
+    view_on_site = True
+    ordering = ['course_no']
+
+def make_intro_course(modeladmin, request, queryset):
+    queryset.update(intro_course=True)
+make_intro_course.short_description = "Mark selected topic(s) as introductory level course"
+
+def make_not_intro_course(modeladmin, request, queryset):
+    queryset.update(intro_course=False)
+make_not_intro_course.short_description = "Mark selected book(s) as not introductory level course"
+
+class TopicAdmin(admin.ModelAdmin):
+
+    list_display = ('subject', 'intro_course', 'time','num_responses','avg_age')
+    list_display_links = ('subject',)
+    search_fields = ('subject',)
+    fields = ('subject', 'intro_course', 'time','num_responses','avg_age')
+    list_filter = ('intro_course','time')
+    view_on_site = True
+    ordering = ['num_responses',]
+    actions = [make_intro_course,make_not_intro_course]
+
+admin.site.register(Author, AuthorAdmin)
 admin.site.register(Book,BookAdmin)
-admin.site.register(Course)
+admin.site.register(Course, CourseAdmin)
 admin.site.register(Student,StudentAdmin)
-admin.site.register(Topic)
+admin.site.register(Topic, TopicAdmin)
 
 
