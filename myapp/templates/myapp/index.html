@@ -12,13 +12,9 @@
           <div class="display-tc animate-box" data-animate-effect="fadeIn">
             <h1>The Art of Teaching is the Art of Assisting Discovery</h1>
             <h2>634 project --- </h2>
-<<<<<<< HEAD
-            <p><a class="btn btn-primary btn-lg btn-learn" href="#">Take A Course</a> <a class="btn btn-primary btn-lg popup-vimeo btn-video" href="https://vimeo.com/channels/staffpicks/93951774"><i class="icon-play"></i> Watch Video</a></p>
+            <p><a class="btn btn-primary btn-lg btn-learn" href="{% url 'myapp:findcourse' %}">Take A Course</a> <a class="btn btn-primary btn-lg popup-vimeo btn-video" href="https://vimeo.com/channels/staffpicks/93951774"><i class="icon-play"></i> Watch Video</a></p>
             <h2>You are the {{ count }}th visitor</h2>
             <p>{{ time }}</p>
-=======
-            <p><a class="btn btn-primary btn-lg btn-learn" href="{% url 'myapp:findcourse' %}">Take A Course</a> <a class="btn btn-primary btn-lg popup-vimeo btn-video" href="https://vimeo.com/channels/staffpicks/93951774"><i class="icon-play"></i> Watch Video</a></p>
->>>>>>> 6329066c69448cec04b1207411b45878714ea46b
             {% if firstname %}
             <p><a href="/myapp/mycourses">Courses I am registered in</a></p>
             {% endif %}
