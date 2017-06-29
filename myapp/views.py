@@ -12,14 +12,34 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 
+def getTime():#获取当前时间
+    import time
+    return time.ctime()
+
+def getCount():#获取访问次数
+    countfile  = open('count.dat','a+')#以读写形式打开记录计数的文件
+    counttext = countfile.read()
+    try:
+        count = int(counttext)+1
+    except:
+        count = 1
+    countfile.seek(0)
+    countfile.truncate()#清空文件
+    countfile.write(str(count))#重新写入新的访问量
+    countfile.flush()
+    countfile.close()
+    return count
+
 # Index page
 def index(req):
+    time = getTime()
+    count = getCount()
     if 'username' in req.session:
         firstname = User.objects.get(username=req.session['username']).first_name
-        return render_to_response('myapp/index.html', {'firstname': firstname})
+        return render_to_response('myapp/index.html', {'firstname': firstname, 'count':count, 'time':time})
     else:
         courselist = Course.objects.all().order_by('title')[:10]
-        return render(req, 'myapp/index.html')
+        return render(req, 'myapp/index.html', {'count':count, 'time':time})
 
 # about page
 def about(req):
@@ -66,7 +86,7 @@ def coursedetail(req, course_no):
 # Create your views here.
 def topiclist(req):
     topiclist = Topic.objects.all()[:10]
-    
+
     if 'username' in req.session:
         firstname = User.objects.get(username=req.session['username']).first_name
         return render(req, 'myapp/topic.html', {'topiclist': topiclist, 'firstname': firstname})
