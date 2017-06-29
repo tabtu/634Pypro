@@ -12,20 +12,20 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 
-def getTime():#获取当前时间
+def getTime():  # get current time
     import time
     return time.ctime()
 
-def getCount():#获取访问次数
-    countfile  = open('count.dat','a+')#以读写形式打开记录计数的文件
+def getCount():  # get current counter
+    countfile  = open('count.dat','a+')
     counttext = countfile.read()
     try:
         count = int(counttext)+1
     except:
         count = 1
     countfile.seek(0)
-    countfile.truncate()#清空文件
-    countfile.write(str(count))#重新写入新的访问量
+    countfile.truncate()
+    countfile.write(str(count))
     countfile.flush()
     countfile.close()
     return count
@@ -82,8 +82,6 @@ def coursedetail(req, course_no):
     else:
         return render(req, 'myapp/coursedetail.html', {'courseNumber': courseNumber, 'cTitle': cTitle, 'cTextbook': cTextbook})
 
-# Import necessary classes and models
-# Create your views here.
 def topiclist(req):
     topiclist = Topic.objects.all()[:10]
 
@@ -128,7 +126,7 @@ def topicdetail(req, subject):
 def sendemail(request):
     subject,form_email,to = 'subject','tabtu@ttxy.org','tabtu@qq.com'
     text_content = 'This is an important message'
-    html_content = u'<b>htmlcontent:link</b><a href="http://www.ttxy.org">TTXY</a>'
+    html_content = u'<b>MAP634 Course Project</b><a href="http://www.ttxy.org">TTXY</a>'
     msg = EmailMultiAlternatives(subject,text_content,form_email,[to])
     msg.attach_alternative(html_content, 'text/html')
     msg.send()
@@ -155,6 +153,7 @@ def register(req):
     if req.method == 'POST':
         form = StudentForm(req.POST)
         usnm = req.POST['username']
+        photo = req.FILES['photo']
         if usnm.strip():
             if Student.objects.filter(username__exact=usnm):
                 return HttpResponse('username has already used, Please change another')
@@ -166,6 +165,14 @@ def register(req):
                 u = User.objects.get(username__exact=usnm)
                 u.set_password(form.cleaned_data['password'])
                 u.save()
+                '''
+                phototime = request.user.username + str(time.time()).split('.')[0]
+                photo_last = str(photo).split('.')[-1]
+                photoname = 'photos/%s.%s'%(phototime, photo_last)
+                img = Image.open(photo)
+                img.save('media/' + photoname)
+                count=UserInfo.objects.filter(user=request.user).update(photo=photoname)
+                '''
             return HttpResponseRedirect(reverse('myapp:login'))
         else:
             return HttpResponse('Invalid login details.')
@@ -239,3 +246,25 @@ def addcourse(req):
     else:
         form = CourseForm()
     return render(req, 'myapp/addcourse.html', {'form':form, 'courselist': courselist, 'firstname': firstname})
+
+'''
+@login_required
+def updateInfo(request):
+    if request.method=='POST':
+        photo=request.FILES['photo']
+        if photo:
+            phototime = request.user.username+str(time.time()).split('.')[0]
+            photo_last = str(photo).split('.')[-1]
+            photoname = 'photos/%s.%s'%(phototime,photo_last)
+            img = Image.open(photo)
+            img.save('myapp/media/' + photoname)
+
+            count = UserInfo.objects.filter(user=request.user).update(
+                photo=photoname
+            )
+            if count:
+                return HttpResponse('Successful')
+            else:
+                return HttpResponse('Failed')
+        return HttpResponse('Image is Empty')
+'''

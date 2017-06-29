@@ -126,6 +126,8 @@ LOGIN_URL = '/myapp/login/'
 
 LOGIN_REDIRECT_URL = '/myapp/login/'
 
+MEDIA_ROOT = '/myapp/image/'  
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = 'smtp.qq.com'
