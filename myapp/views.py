@@ -153,11 +153,7 @@ def register(req):
     if req.method == 'POST':
         form = StudentForm(req.POST)
         usnm = req.POST['username']
-<<<<<<< HEAD
         # photo = req.FILES['photo']
-=======
-        #photo = req.FILES['photo']
->>>>>>> b4a0993efb5ed7489a8d988b30a087a646c51f6e
         if usnm.strip():
             if Student.objects.filter(username__exact=usnm):
                 return HttpResponse('username has already used, Please change another')
