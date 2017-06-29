@@ -9,7 +9,7 @@
 			<div class="col-md-8 col-md-offset-2 text-center">
 				<div class="display-t">
 					<div class="display-tc animate-box" data-animate-effect="fadeIn">
-						<h2>Change Password</h2>
+						<h2 >Change Password</h2>
 					</div>
 				</div>
 			</div>
@@ -21,9 +21,9 @@
 {% block body_block %}
 <h2>Change My Password</h2>
 <h2>|</h2>
-    <form class="changefield" action="." method="post">
+    <form align="center" action="." method="post">
 		{% csrf_token %}
-		{{ form.as_p }}
+		{{ form.as_ul }}
 		<input type="submit" value="Submit" />
-</form>
+    </form>
 {% endblock %}

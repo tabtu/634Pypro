@@ -2,10 +2,11 @@ from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
-from myapp.models import Author, Book, Course, Student, Topic, User
+from myapp.models import Author, Book, Course, Student, Topic
 from myapp.forms import InterestForm, TopicForm, LoginForm, StudentForm, CourseForm, ChangePwd
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 # Index page
@@ -169,12 +170,9 @@ def changepwd(req):
     if req.method=='POST':
         form = ChangePwd(req.POST)
         if form.is_valid():
-            if form.cleaned_data['password'] == stu.password:
-                stu.password = form.cleaned_data['newpassword']
-                student.save()
-                return HttpResponseRedirect(reverse('myapp:logout'))
-            else:
-                return HttpResponseRedirect(reverse('myapp:chgpwd'))
+            newpasswd = form.cleaned_data['password']
+            stu.set_password(newpasswd)
+            stu.save()
     else:
         form = ChangePwd()
     return render(req, 'myapp/chgpwd.html', {'form':form, 'firstname': firstname})
