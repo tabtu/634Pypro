@@ -227,6 +227,7 @@ def changepwd(req):
             newpasswd = form.cleaned_data['password']
             stu.set_password(newpasswd)
             stu.save()
+            return HttpResponseRedirect(reverse('myapp:index'))
     else:
         form = ChangePwd()
     return render(req, 'myapp/chgpwd.html', {'form':form, 'firstname': firstname})
