@@ -91,6 +91,11 @@ def topicdetail(req, subject):
         form = InterestForm()
     return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic})
 
+def setEmail(request):
+    if request.method == "POST":
+        send_mail('subject', 'content', 'tabtu@ttxy.org', ['joe@ttxy.org'], fail_silently=True)
+    return HttpResponseRedirect(reverse('myapp:index'))
+
 # create a topic
 @login_required
 def addtopic(req):
