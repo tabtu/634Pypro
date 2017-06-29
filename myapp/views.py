@@ -7,6 +7,7 @@ from myapp.forms import InterestForm, TopicForm, LoginForm, StudentForm, CourseF
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 
 # Index page
 def index(req):
@@ -91,9 +92,8 @@ def topicdetail(req, subject):
         form = InterestForm()
     return render(req, 'myapp/topicdetail.html',{'form':form, 'topic':topic})
 
-def setEmail(request):
-    if request.method == "POST":
-        send_mail('subject', 'content', 'tabtu@ttxy.org', ['joe@ttxy.org'], fail_silently=True)
+def sendEmail(request):
+    send_mail('subject', 'content', 'tabtu@ttxy.org', ['joe@ttxy.org'], fail_silently=True)
     return HttpResponseRedirect(reverse('myapp:index'))
 
 # create a topic
