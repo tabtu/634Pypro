@@ -30,14 +30,17 @@
 {% block body_block %}
 <h2>Add A Course</h2>
 <h2>|</h2>
-    <form class="addfield" action="." method="post" align="center">
+<div class="form-group">
+	<form class="addfield" action="." method="post" align="center">
 
-        {% csrf_token %}
-    <ol>
-        {% for f in form %}
-            {{ f.label }}:  {{ f }}<br>
-        {% endfor %}
-    </ol>
-    <input type="submit" value="Save" />
-</form>
+	        {% csrf_token %}
+	    <ol>
+	        {% for f in form %}
+	            {{ f.label }}:  {{ f }}<br>
+	        {% endfor %}
+	    </ol>
+	    <input type="submit" value="Save" class="btn btn-primary">
+	</form>
+</div>
+
 {% endblock %}
