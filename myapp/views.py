@@ -2,8 +2,8 @@ from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
-from myapp.models import Author, Book, Course, Student, Topic
-from myapp.forms import InterestForm, TopicForm, LoginForm, StudentForm, CourseForm, ChangePwd
+from myapp.models import Author, Book, Course, Student, Topic, HashKey
+from myapp.forms import InterestForm, TopicForm, LoginForm, StudentForm, CourseForm, ChangePwd, UploadImageForm, UploadFileForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -17,25 +17,28 @@ def getTime():  # get current time
     return time.ctime()
 
 def getCount():  # get current counter
-    countfile  = open('count.dat','a+')
-    counttext = countfile.read()
-    try:
-        count = int(counttext)+1
-    except:
-        count = 1
-    countfile.seek(0)
-    countfile.truncate()
-    countfile.write(str(count))
-    countfile.flush()
-    countfile.close()
-    return count
+    # countfile  = open('count.dat','a+')
+    # counttext = countfile.read()
+    # try:
+    #     count = int(counttext) + 1
+    # except:
+    #     count = 1
+    # countfile.seek(0)
+    # countfile.truncate()
+    # countfile.write(str(count))
+    # countfile.flush()
+    # countfile.close()
+    count = HashKey.objects.get(name='hitcount')
+    count.value += 1
+    count.save()
+    return count.value
 
 # Index page
 def index(req):
     time = getTime()
     count = getCount()
     if 'username' in req.session:
-        firstname = User.objects.get(username=req.session['username']).first_name
+        firstname = req.user.first_name
         return render_to_response('myapp/index.html', {'firstname': firstname, 'count':count, 'time':time})
     else:
         courselist = Course.objects.all().order_by('title')[:10]
@@ -61,7 +64,7 @@ def courselist(req):
 
 @login_required
 def mycourses(req):
-    firstname = User.objects.get(username=req.session['username']).first_name
+    firstname = req.user.first_name
     if Student.objects.filter(username=req.session['username']):
         mycourses = Course.objects.filter(student__username=req.session['username'])
         return render(req, 'myapp/mycourses.html', {'isstudent': True, 'mycourses': mycourses, 'firstname': firstname})
@@ -77,16 +80,15 @@ def coursedetail(req, course_no):
     cTitle = c.title
     cTextbook = str(c.textbook)
     if 'username' in req.session:
-        firstname = User.objects.get(username=req.session['username']).first_name
+        firstname = req.user.first_name
         return render_to_response('myapp/coursedetail.html', {'courseNumber': courseNumber, 'cTitle': cTitle, 'cTextbook': cTextbook, 'firstname': firstname})
     else:
         return render(req, 'myapp/coursedetail.html', {'courseNumber': courseNumber, 'cTitle': cTitle, 'cTextbook': cTextbook})
 
 def topiclist(req):
     topiclist = Topic.objects.all()[:10]
-
     if 'username' in req.session:
-        firstname = User.objects.get(username=req.session['username']).first_name
+        firstname = req.user.first_name
         return render(req, 'myapp/topic.html', {'topiclist': topiclist, 'firstname': firstname})
     else:
         return render(req, 'myapp/topic.html', {'topiclist': topiclist})
@@ -135,7 +137,7 @@ def sendemail(request):
 # create a topic
 @login_required
 def addtopic(req):
-    firstname = User.objects.get(username=req.session['username']).first_name
+    firstname = req.user.first_name
     topiclist = Topic.objects.all()
     if req.method=='POST':
         form = TopicForm(req.POST)
@@ -190,7 +192,6 @@ def user_login(req):
             if user.is_active:
                 login(req, user)
                 req.session['username'] = user.username
-                req.session['firstname'] = user.first_name
                 return HttpResponseRedirect(reverse('myapp:index'))
             else:
                 return HttpResponse('Your account is disabled.')
@@ -212,7 +213,7 @@ def user_logout(req):
 # contact page
 def contact(req):
     if 'username' in req.session:
-        firstname = User.objects.get(username=req.session['username']).first_name
+        firstname = req.user.first_name
         return render_to_response('myapp/contact.html', {'firstname': firstname})
     else:
         return render(req, 'myapp/contact.html')
@@ -234,7 +235,7 @@ def changepwd(req):
 
 @login_required
 def addcourse(req):
-    firstname = User.objects.get(username=req.session['username']).first_name
+    firstname = req.user.first_name
     courselist = Course.objects.all()[:10]
     if req.method=='POST':
         form = CourseForm(req.POST)
@@ -247,24 +248,19 @@ def addcourse(req):
         form = CourseForm()
     return render(req, 'myapp/addcourse.html', {'form':form, 'courselist': courselist, 'firstname': firstname})
 
-'''
-@login_required
-def updateInfo(request):
-    if request.method=='POST':
-        photo=request.FILES['photo']
-        if photo:
-            phototime = request.user.username+str(time.time()).split('.')[0]
-            photo_last = str(photo).split('.')[-1]
-            photoname = 'photos/%s.%s'%(phototime,photo_last)
-            img = Image.open(photo)
-            img.save('myapp/media/' + photoname)
+def handle_uploaded_file(f):
+    with open('/myapp/image/name.jpg', 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
 
-            count = UserInfo.objects.filter(user=request.user).update(
-                photo=photoname
-            )
-            if count:
-                return HttpResponse('Successful')
-            else:
-                return HttpResponse('Failed')
-        return HttpResponse('Image is Empty')
-'''
+@login_required
+def upload_file(req):
+    firstname = req.user.first_name
+    if req.method == 'POST':
+        form = UploadFileForm(req.POST, req.FILES)
+        if form.is_valid():
+            handle_uploaded_file(req.FILES['image'])
+            return HttpResponseRedirect('success')
+    else:
+        form = UploadFileForm()
+    return render(req, 'myapp/uploadimg.html', {'firstname': firstname, 'form': form})

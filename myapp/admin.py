@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from  .models import Author, Book, Course, Student, Topic
+from  .models import Author, Book, Course, Student, Topic, HashKey
 # Register your models here.
 
 class BookInline(admin.TabularInline):
@@ -98,5 +98,4 @@ admin.site.register(Book,BookAdmin)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Student,StudentAdmin)
 admin.site.register(Topic, TopicAdmin)
-
-
+admin.site.register(HashKey)

@@ -1,5 +1,16 @@
 from django import forms
-from myapp.models import Topic, Student, Course, Book
+from myapp.models import Topic, Student, Course, Book, MyImage
+
+class UploadImageForm(forms.Form):
+    class Meta:
+        model = MyImage
+        fields = ['name', 'image']
+        widgets = {}
+        labels = {'Name':'Picture Name', 'image': 'Upload File'}
+
+class UploadFileForm(forms.Form):
+    title = forms.CharField(max_length=50)
+    image = forms.FileField()
 
 class TopicForm(forms.ModelForm):
     class Meta:
@@ -38,7 +49,7 @@ class StudentForm(forms.ModelForm):
 class ChangePwd(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput, label='New password ')
     newpassword = forms.CharField(widget=forms.PasswordInput, label='Confirm again ')
-    
+
     def clean_newpassword(self):
         password= self.cleaned_data['password']
         newpassword= self.cleaned_data['newpassword']

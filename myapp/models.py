@@ -99,3 +99,15 @@ class Topic(models.Model):
     avg_age =models.IntegerField(default=20)
     def __str__(self):
         return self.subject
+
+class MyImage(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.FileField()
+    def __str__(self):
+        return self.picname
+
+class HashKey(models.Model):
+    name = models.CharField(max_length=20, primary_key=True)
+    value = models.IntegerField(default=0)
+    def __str__(self):
+        return self.name

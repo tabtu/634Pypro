@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'^findcourse/$', views.courselist, name = 'findcourse'),
     url(r'^addcourse/$', views.addcourse, name = 'addcourse'),
     url(r'^sendemail/$', views.sendemail, name = 'sendemail'),
+    url(r'^uploadimg/$', views.upload_file, name = 'uploadimg'),
 ]
