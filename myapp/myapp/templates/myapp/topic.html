@@ -13,7 +13,7 @@
             {% if topiclist %}
             <ol>
             {%  for topic in topiclist %}
-              <li><a href="/myapp/topic/{{ topic.subject }}" >{{ topic.subject }} </a></li>
+              <li><a href="/topic/{{ topic.subject }}" >{{ topic.subject }} </a></li>
             {%  endfor %}
               </ol>
             {% else%}
@@ -34,6 +34,6 @@
 {% endblock %}
 
 {% block body_block %}
-    
+
 
 {% endblock %}

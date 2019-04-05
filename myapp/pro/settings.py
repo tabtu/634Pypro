@@ -122,19 +122,19 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
 STATIC_URL = '/static/'
 
-LOGIN_URL = '/myapp/login/'
+LOGIN_URL = '/login/'
 
-LOGIN_REDIRECT_URL = '/myapp/login/'
+LOGIN_REDIRECT_URL = '/login/'
 
-MEDIA_ROOT = '/myapp/image/'  
+MEDIA_ROOT = '/myapp/image/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'tabtu@ttxy.org'
+EMAIL_HOST_USER = 'i@tabtu'
 EMAIL_HOST_PASSWORD = 'cborwzjyurfebiii'
-EMAIL_SUBJECT_PREFIX = u'[ttxy.org]'
+EMAIL_SUBJECT_PREFIX = u'[tabtu.cn]'
 EMAIL_USE_TLS = True
 # admin email
-SERVER_EMAIL = 'tabtu@ttxy.org'
+SERVER_EMAIL = 'i@tabtu.cn'

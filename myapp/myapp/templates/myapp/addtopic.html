@@ -13,7 +13,7 @@
             {% if topiclist %}
             <ol>
             {%  for topic in topiclist %}
-              <li><a href="/myapp/topic/{{ topic.subject }}" >{{ topic.subject }} </a></li>
+              <li><a href="/topic/{{ topic.subject }}" >{{ topic.subject }} </a></li>
             {%  endfor %}
               </ol>
             {% else%}
@@ -34,9 +34,9 @@
     <form class="addfield" action="." method="post" align="center">
 
         {% csrf_token %}
-    	
+
             {{ form.as_p }}
-    	
+
     	<input type="submit" value="Save" />
 	</form>
 </div>

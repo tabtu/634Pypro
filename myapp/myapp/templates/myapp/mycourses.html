@@ -14,7 +14,7 @@
 							{% if mycourses %}
 				    	<ol>
 				    		{% for course in mycourses %}
-					  		<li><a href="/myapp/course/{{ course.course_no }}" >{{ course.title }} </a></li>
+					  		<li><a href="/course/{{ course.course_no }}" >{{ course.title }} </a></li>
 				    		{% endfor %}
 				    	</ol>
 				    	{% else %}
@@ -32,5 +32,5 @@
 </header>
 {% endblock %}
 {% block body_block %}
-   
+
 {% endblock %}

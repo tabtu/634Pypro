@@ -79,35 +79,35 @@
   			<div class="container">
   				<div class="row">
   					<div class="col-xs-1">
-  						<div id="mac634-logo"><a href="/myapp/index">Learn<span>.</span></a></div>
+  						<div id="mac634-logo"><a href="/index">Learn<span>.</span></a></div>
   					</div>
   					<div class="col-xs-11 text-right menu-1">
   						<ul>
-  							<li class="active"><a href="/myapp/index">Home</a></li>
+  							<li class="active"><a href="/index">Home</a></li>
                 <li class="has-dropdown">
                   <a href="#">Course</a>
                   <ul class="dropdown">
                     {% if firstname %}
-                    <li><a href="/myapp/mycourses">My Courses</a></li>
-                    <li><a href="/myapp/addcourse">Propose A Course</a></li>
+                    <li><a href="/mycourses">My Courses</a></li>
+                    <li><a href="/addcourse">Propose A Course</a></li>
                     {% endif %}
-                    <li><a href="/myapp/findcourse">Search</a></li>
+                    <li><a href="/findcourse">Search</a></li>
                   </ul>
                 </li>
-  							<li><a href="/myapp/topic">Topic</a></li>
+  							<li><a href="/topic">Topic</a></li>
   							<li class="has-dropdown">
   								<a href="#">About</a>
   								<ul class="dropdown">
-  									<li><a href="/myapp/about">Team</a></li>
-  									<li><a href="/myapp/contact">Contact Us</a></li>
+  									<li><a href="/about">Team</a></li>
+  									<li><a href="/contact">Contact Us</a></li>
   								</ul>
   							</li>
                 {% if firstname %}
-                <li class="btn-cta"><a href="/myapp/users"><span>Welcome: {{ firstname }}</span></a></li>
-                <li class="btn-cta"><a href="/myapp/logout"><span>Logout</span></a></li>
+                <li class="btn-cta"><a href="/users"><span>Welcome: {{ firstname }}</span></a></li>
+                <li class="btn-cta"><a href="/logout"><span>Logout</span></a></li>
                 {% else %}
-                <li class="btn-cta"><a href="/myapp/login"><span>Login</span></a></li>
-                <li class="btn-cta"><a href="/myapp/register"><span>Register</span></a></li>
+                <li class="btn-cta"><a href="/login"><span>Login</span></a></li>
+                <li class="btn-cta"><a href="/register"><span>Register</span></a></li>
                 {% endif %}
   						</ul>
   					</div>
